@@ -52,7 +52,7 @@ public class PiecePane extends Pane {
 
     public void stop(){
         dx = 0;
-        dy = 0
+        dy = 0;
     }
 
     public DoubleProperty rateProperty() {
