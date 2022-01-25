@@ -14,7 +14,7 @@ public class mainCheck extends Application{
         Rectangle r1 = new Rectangle(25, 10, 300, 600);
         r1.setStroke(Color.BLACK);
         r1.setFill(Color.BLACK);
-        Rectangle[] new1 = vertical();
+        Rectangle[] new1 = oBlock();
         
         // Rectangle r2 = new Rectangle(25, 50, 60, 30);
         // Rectangle r3 = new Rectangle(25, 90, 60, 30);
@@ -87,6 +87,52 @@ public class mainCheck extends Application{
       vertical4.setY(10);  
       vertical4.setStroke(Color.BLUE);
       vertical4.setFill(Color.BLUE); 
+      pieces[3] = vertical4;
+      return pieces;
+    }
+
+    public Rectangle[] oBlock(){
+        Rectangle[] pieces = new Rectangle[4];
+        Rectangle vertical1 = new Rectangle();  
+      
+      
+      vertical1.setWidth(20);
+      vertical1.setHeight(20);
+      vertical1.setX(100);
+      vertical1.setY(10);  
+      vertical1.setStroke(Color.YELLOW);
+      vertical1.setFill(Color.YELLOW); 
+
+      pieces[0] = vertical1;
+      Rectangle vertical2 = new Rectangle();  
+      
+      vertical2.setWidth(20);
+      vertical2.setHeight(20);
+      vertical2.setX(120);
+      vertical2.setY(10);  
+      vertical2.setStroke(Color.YELLOW);
+      vertical2.setFill(Color.YELLOW);
+      
+      pieces[1] = vertical2;
+      Rectangle vertical3 = new Rectangle();  
+      
+      vertical3.setWidth(20);
+      vertical3.setHeight(20);
+      vertical3.setX(100);
+      vertical3.setY(30);  
+      vertical3.setStroke(Color.YELLOW);
+      vertical3.setFill(Color.YELLOW); 
+      pieces[2] = vertical3;
+
+      
+      Rectangle vertical4 = new Rectangle();  
+      
+      vertical4.setWidth(20);
+      vertical4.setHeight(20);
+      vertical4.setX(120);
+      vertical4.setY(30);  
+      vertical4.setStroke(Color.YELLOW);
+      vertical4.setFill(Color.YELLOW); 
       pieces[3] = vertical4;
       return pieces;
     }
