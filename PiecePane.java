@@ -22,10 +22,12 @@ public class PiecePane extends Pane {
     private double x = radius, y = radius;
     private double dx = 1, dy = 1;
     private ArrayList <Rectangle> rArray;
-    private Rectangle r1 = new Rectangle(x, y, 50, 50);
+    private Rectangle r1 = new Rectangle(25, 25, 50, 50);
     private Timeline animation;
     private double speed;
     private int pos = 0;
+    private mainCheck blocks = new mainCheck();
+    int waitTime = 0;
     Group root = new Group();//try ignoring for now
 
     public PiecePane() {
@@ -65,7 +67,7 @@ public class PiecePane extends Pane {
           if (rect != r) {
             rect.setFill(Color.GREEN);
       
-            if (r.getBoundsInParent().intersects(rect.getBoundsInParent())&&r.getY()==rect.getY()-50/*&&r.getX()==rect.getX()*/) {
+            if (r.getBoundsInParent().intersects(rect.getBoundsInParent())&&r.getY()==rect.getY()-50&&r.getX()==rect.getX()) {
               collisionDetected = true;
             }
           }
@@ -84,11 +86,17 @@ public class PiecePane extends Pane {
     }
 
     public void left(){
-        dx = -3;
+        if(waitTime <=0){
+            dx = -50;   
+            waitTime = 5; 
+        }        
     }
 
     public void right(){
-        dx = 3;
+        if(waitTime <= 0){
+            dx = 50;    
+            waitTime = 5;
+        }
     }
 
     public void up(){
@@ -125,7 +133,7 @@ public class PiecePane extends Pane {
     public void end(){
         dx = 0;
         //dy = 0;
-        Rectangle copy = new Rectangle(x, y, 50, 50);
+        Rectangle copy = new Rectangle(25, 25, 50, 50);
         copy.setFill(Color.GREEN); // Set ball color
         //getChildren().add(r1);
         rArray.add(copy);
@@ -133,24 +141,33 @@ public class PiecePane extends Pane {
         getChildren().add(rArray.get(rArray.size()-1));
         x = rArray.get(rArray.size()-1).getX();
         y = rArray.get(rArray.size()-1).getX();
+        waitTime = 0;
     }
 
     protected void move() {
         checkBounds(rArray.get(rArray.size()-1));
         // Check boundaries
         
-        if (y > getHeight() - 50) {
+        if (y > getHeight() - 25) {
              //dy *= 0; // Change ball move direction
              end();
          }
         // Adjust ball position
         x += dx;
         y += dy;
-        if (x < 0 || x > getWidth() - 50) {
+        if (x < -0 || x > getWidth() - 50) {
             x -=dx; // Change ball move direction
+        }
+        for(Rectangle r : rArray){
+            if (r.getX()>=x-49&&r.getX()<=x+49&&r!=rArray.get(rArray.size()-1)) {
+                if (r.getY()>=y-49&&r.getY()<=y+49) {
+                    x -=dx; // Change ball move direction
+                }
+            }
         }
         dx = 0;
         rArray.get(rArray.size()-1).setX(x);
         rArray.get(rArray.size()-1).setY(y);
+        waitTime -= 1;
     }
 }
