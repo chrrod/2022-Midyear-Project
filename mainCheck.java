@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import javafx.scene.shape.Rectangle;
+import java.util.Random;
 
 public class mainCheck extends Application{
     //@Override // Override the start method in the Application class
@@ -231,6 +232,22 @@ public class mainCheck extends Application{
     return pieces;
   }
 
+  public Rectangle[] random(){
+    Rectangle r[];
+    Random rand = new Random();
+    int rn = rand.nextInt(4);
+    if(rn == 0){
+      r = lBlock();
+    }else if(rn == 1){
+      r = jBlock();
+    }else if(rn == 2){
+      r = oBlock();
+    }else{
+      r = vertical();
+    }
+
+    return r;
+  }
 
   public static void main(String[] args) {
     launch(args);
