@@ -15,7 +15,7 @@ public class mainCheck extends Application{
         Rectangle r1 = new Rectangle(25, 10, 300, 600);
         r1.setStroke(Color.BLACK);
         r1.setFill(Color.BLACK);
-        Rectangle[] new1 = lBlock();
+        Rectangle[] new1 = zBlock();
         
         // Rectangle r2 = new Rectangle(25, 50, 60, 30);
         // Rectangle r3 = new Rectangle(25, 90, 60, 30);
@@ -232,6 +232,143 @@ public class mainCheck extends Application{
     return pieces;
   }
 
+  public Rectangle[] sBlock(){
+    Rectangle[] pieces = new Rectangle[4];
+    Rectangle vertical1 = new Rectangle();  
+  
+  
+    vertical1.setWidth(20);
+    vertical1.setHeight(20);
+    vertical1.setX(120);
+    vertical1.setY(10);  
+    vertical1.setStroke(Color.GREEN);
+    vertical1.setFill(Color.GREEN); 
+
+    pieces[0] = vertical1;
+    Rectangle vertical2 = new Rectangle();  
+    
+    vertical2.setWidth(20);
+    vertical2.setHeight(20);
+    vertical2.setX(100);
+    vertical2.setY(10);  
+    vertical2.setStroke(Color.GREEN);
+    vertical2.setFill(Color.GREEN);
+    
+    pieces[1] = vertical2;
+    Rectangle vertical3 = new Rectangle();  
+    
+    vertical3.setWidth(20);
+    vertical3.setHeight(20);
+    vertical3.setX(100);
+    vertical3.setY(30);  
+    vertical3.setStroke(Color.GREEN);
+    vertical3.setFill(Color.GREEN); 
+    pieces[2] = vertical3;
+
+  
+    Rectangle vertical4 = new Rectangle();  
+    
+    vertical4.setWidth(20);
+    vertical4.setHeight(20);
+    vertical4.setX(80);
+    vertical4.setY(30);  
+    vertical4.setStroke(Color.GREEN);
+    vertical4.setFill(Color.GREEN); 
+    pieces[3] = vertical4;
+    return pieces;
+}
+
+public Rectangle[] tBlock(){
+  Rectangle[] pieces = new Rectangle[4];
+  Rectangle vertical1 = new Rectangle();  
+
+
+  vertical1.setWidth(20);
+  vertical1.setHeight(20);
+  vertical1.setX(100);
+  vertical1.setY(10);  
+  vertical1.setStroke(Color.PURPLE);
+  vertical1.setFill(Color.PURPLE); 
+
+  pieces[0] = vertical1;
+  Rectangle vertical2 = new Rectangle();  
+  
+  vertical2.setWidth(20);
+  vertical2.setHeight(20);
+  vertical2.setX(100);
+  vertical2.setY(30);  
+  vertical2.setStroke(Color.PURPLE);
+  vertical2.setFill(Color.PURPLE);
+  
+  pieces[1] = vertical2;
+  Rectangle vertical3 = new Rectangle();  
+  
+  vertical3.setWidth(20);
+  vertical3.setHeight(20);
+  vertical3.setX(120);
+  vertical3.setY(30);  
+  vertical3.setStroke(Color.PURPLE);
+  vertical3.setFill(Color.PURPLE); 
+  pieces[2] = vertical3;
+
+
+  Rectangle vertical4 = new Rectangle();  
+  
+  vertical4.setWidth(20);
+  vertical4.setHeight(20);
+  vertical4.setX(80);
+  vertical4.setY(30);  
+  vertical4.setStroke(Color.PURPLE);
+  vertical4.setFill(Color.PURPLE); 
+  pieces[3] = vertical4;
+  return pieces;
+}
+
+public Rectangle[] zBlock(){
+  Rectangle[] pieces = new Rectangle[4];
+  Rectangle vertical1 = new Rectangle();  
+
+
+  vertical1.setWidth(20);
+  vertical1.setHeight(20);
+  vertical1.setX(80);
+  vertical1.setY(10);  
+  vertical1.setStroke(Color.RED);
+  vertical1.setFill(Color.RED); 
+
+  pieces[0] = vertical1;
+  Rectangle vertical2 = new Rectangle();  
+  
+  vertical2.setWidth(20);
+  vertical2.setHeight(20);
+  vertical2.setX(100);
+  vertical2.setY(10);  
+  vertical2.setStroke(Color.RED);
+  vertical2.setFill(Color.RED);
+  
+  pieces[1] = vertical2;
+  Rectangle vertical3 = new Rectangle();  
+  
+  vertical3.setWidth(20);
+  vertical3.setHeight(20);
+  vertical3.setX(100);
+  vertical3.setY(30);  
+  vertical3.setStroke(Color.RED);
+  vertical3.setFill(Color.RED); 
+  pieces[2] = vertical3;
+
+
+  Rectangle vertical4 = new Rectangle();  
+  
+  vertical4.setWidth(20);
+  vertical4.setHeight(20);
+  vertical4.setX(120);
+  vertical4.setY(30);  
+  vertical4.setStroke(Color.RED);
+  vertical4.setFill(Color.RED); 
+  pieces[3] = vertical4;
+  return pieces;
+}
   public Rectangle[] random(){
     Rectangle r[];
     Random rand = new Random();
@@ -248,6 +385,7 @@ public class mainCheck extends Application{
 
     return r;
   }
+
 
   public static void main(String[] args) {
     launch(args);
