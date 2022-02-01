@@ -14,6 +14,8 @@ public class tetrisBoard extends Application{
         Rectangle r1 = new Rectangle(25, 10, 300, 600);
         r1.setStroke(Color.BLACK);
         r1.setFill(Color.BLACK);
+
+
         // Rectangle r2 = new Rectangle(25, 50, 60, 30);
         // Rectangle r3 = new Rectangle(25, 90, 60, 30);
         // r3.setArcWidth(15);
@@ -21,7 +23,8 @@ public class tetrisBoard extends Application{
         // Create a group and add nodes to the group
         Group group = new Group();
         group.getChildren().addAll(new Text(10, 27, ""), r1/*, new Text(10, 67, "r2"), r2, new Text(10, 107, "r3"), r3*/);
-        
+
+
         // for (int i = 0; i < 4; i++){
         //     Rectangle r = new Rectangle(100, 50, 100, 30);
         //     r.setRotate(i*360/8);
@@ -34,7 +37,9 @@ public class tetrisBoard extends Application{
         primaryStage.setTitle("ShowRectangle");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
+        //Edits to try to add image on tetris
+        //primaryStage.setScene(tshaped);
+    }   
 
     public static void main(String[] args) {
         launch(args);

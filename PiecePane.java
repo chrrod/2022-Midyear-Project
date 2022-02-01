@@ -13,6 +13,8 @@ import javafx.scene.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import javafx.scene.shape.*;
@@ -21,26 +23,31 @@ public class PiecePane extends Pane {
     public final double radius = 20;
     private double x = radius, y = radius;
     private double dx = 1, dy = 1;
-    private ArrayList <Rectangle[]> rArray;
-    //private Rectangle r1 = new Rectangle(25, 25, 50, 50);
+    private ArrayList<Rectangle[]> rArray;
+    // private Rectangle r1 = new Rectangle(25, 25, 50, 50);
     private Rectangle[] r1;
     private Timeline animation;
     private double speed;
     private int pos = 0;
     private mainCheck blocks = new mainCheck();
     int waitTime = 0;
-    Group root = new Group();//try ignoring for now
+    Group root = new Group();// try ignoring for now
+    private Image spreadsheetImage;
+    private ImageView imageView;
 
     public PiecePane() {
+        spreadsheetImage = new Image("VsCode.png");
+        imageView = new ImageView();
+        imageView.setImage(spreadsheetImage);
         rArray = new ArrayList<>();
-        //r1.setFill(Color.GREEN); // Set ball color
-        ////getChildren().add(r1); // Place a ball into this pane
+        // r1.setFill(Color.GREEN); // Set ball color
+        //// getChildren().add(r1); // Place a ball into this pane
         r1 = blocks.random();
         rArray.add(r1);
-        getChildren().addAll(rArray.get(rArray.size()-1));
+        getChildren().addAll(rArray.get(rArray.size() - 1));
         // Create an animation for moving the ball
         animation = new Timeline(
-            new KeyFrame(Duration.millis(50), e -> move()));
+                new KeyFrame(Duration.millis(50), e -> move()));
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play(); // Start animation
         speed = animation.getRate();
@@ -49,23 +56,25 @@ public class PiecePane extends Pane {
 
     public void play() {
         animation.play();
+        getChildren().remove(imageView);
     }
 
     public void pause() {
         animation.pause();
+        getChildren().add(imageView);
     }
 
-    public void increaseSpeed() {//not ready to be implemented yet, need to add checker for multple key press.
+    public void increaseSpeed() {// not ready to be implemented yet, need to add checker for multple key press.
         animation.setRate(speed + 15);
     }
 
-    public void reset(){
+    public void reset() {
         animation.setRate(speed);
     }
 
     private void checkBounds(Rectangle[] r) {
         boolean collisionDetected = false;
-        //for(Rectangle rect: rArray) {
+        // for(Rectangle rect: rArray) {
         for (Rectangle[] rect : rArray) {
           if (!(rect.equals(r))&&!(rect.equals(rArray.get(rArray.size()-1)))) {
             //rect.setFill(Color.GREEN);
@@ -86,7 +95,6 @@ public class PiecePane extends Pane {
                     collisionDetected = true;
                 }
             }
-          }
         }
         //
         for(int i = 0; i< rArray.size()-1; i++){
@@ -98,12 +106,12 @@ public class PiecePane extends Pane {
                 }
             }
         }
-      
+
         if (collisionDetected) {
-          //r.setFill(Color.BLUE);
-          end();
+            // r.setFill(Color.BLUE);
+            end();
         } else {
-          //r.setFill(Color.GREEN);
+            // r.setFill(Color.GREEN);
         }
     }
 
@@ -142,11 +150,11 @@ public class PiecePane extends Pane {
         }
         
         // for(Rectangle rect : rArray){
-        //     if(rect!=rArray.get(rArray.size()-1)){
-        //         if(rect.getX() == rArray.get(rArray.size()-1).getX()){
-        //             maxHeight = rect.getY();
-        //         }
-        //     }
+        // if(rect!=rArray.get(rArray.size()-1)){
+        // if(rect.getX() == rArray.get(rArray.size()-1).getX()){
+        // maxHeight = rect.getY();
+        // }
+        // }
         // }
         // rArray.get(rArray.size()-1).setY(maxHeight-50);
         for(Rectangle[] rect: rArray){
@@ -193,39 +201,39 @@ public class PiecePane extends Pane {
     }
 
     // public void stop(){
-    //     dx = 0;
-    //     dy = 0;
-    //     //Rectangle copy = new Rectangle(x, y, 50, 50);
-    //     //copy.setFill(Color.GREEN); // Set ball color
-    //     //getChildren().add(r1);
-    //     rArray.add(blocks.random());
-    //     pos++;
-    //     getChildren().add(rArray.get(rArray.size()-1));
-    //     x = rArray.get(rArray.size()-1).getX();
-    //     y = rArray.get(rArray.size()-1).getX();
-    //     System.out.println(pos+" " + rArray.size());
+    // dx = 0;
+    // dy = 0;
+    // //Rectangle copy = new Rectangle(x, y, 50, 50);
+    // //copy.setFill(Color.GREEN); // Set ball color
+    // //getChildren().add(r1);
+    // rArray.add(blocks.random());
+    // pos++;
+    // getChildren().add(rArray.get(rArray.size()-1));
+    // x = rArray.get(rArray.size()-1).getX();
+    // y = rArray.get(rArray.size()-1).getX();
+    // System.out.println(pos+" " + rArray.size());
     // }
 
     public DoubleProperty rateProperty() {
         return animation.rateProperty();
     }
 
-    public void end(){
+    public void end() {
         dx = 0;
-        //dy = 0;
-        //Rectangle copy = new Rectangle(25, 25, 50, 50);
-        //copy.setFill(Color.GREEN); // Set ball color
-        //getChildren().add(r1);
+        // dy = 0;
+        // Rectangle copy = new Rectangle(25, 25, 50, 50);
+        // copy.setFill(Color.GREEN); // Set ball color
+        // getChildren().add(r1);
         rArray.add(blocks.random());
         pos++;
-        getChildren().addAll(rArray.get(rArray.size()-1));
-        //x = rArray.get(rArray.size()-1).getX();
-        //y = rArray.get(rArray.size()-1).getX();
+        getChildren().addAll(rArray.get(rArray.size() - 1));
+        // x = rArray.get(rArray.size()-1).getX();
+        // y = rArray.get(rArray.size()-1).getX();
         waitTime = 0;
     }
 
     protected void move() {
-        checkBounds(rArray.get(rArray.size()-1));
+        checkBounds(rArray.get(rArray.size() - 1));
         // Check boundaries
         boolean needToCheck = true;
         for(Rectangle r : rArray.get(rArray.size()-1)){
@@ -233,27 +241,28 @@ public class PiecePane extends Pane {
                 end();
                 needToCheck = false;
             }
-            r.setX(r.getX()+dx);
-            r.setY(r.getY()+3);
+            r.setX(r.getX() + dx);
+            r.setY(r.getY() + 3);
         }
-        
+
         // if (y > getHeight() - 25) {
-        //      //dy *= 0; // Change ball move direction
-        //      end();
-        //  }
+        // //dy *= 0; // Change ball move direction
+        // end();
+        // }
         // Adjust ball position
         // x += dx;
         // y += dy;
         // if (x < -0 || x > getWidth() - 50) {
-        //     x -=dx; // Change ball move direction
+        // x -=dx; // Change ball move direction
         // }
 
-        // for(Rectangle r : rArray){// checks to see if trying to move into another object
-        //     if (r.getX()>=x-49&&r.getX()<=x+49&&r!=rArray.get(rArray.size()-1)) {
-        //         if (r.getY()>=y-49&&r.getY()<=y+49) {
-        //             x -=dx; // Change ball move direction
-        //         }
-        //     }
+        // for(Rectangle r : rArray){// checks to see if trying to move into another
+        // object
+        // if (r.getX()>=x-49&&r.getX()<=x+49&&r!=rArray.get(rArray.size()-1)) {
+        // if (r.getY()>=y-49&&r.getY()<=y+49) {
+        // x -=dx; // Change ball move direction
+        // }
+        // }
         // }
         boolean changePos = false;
         for(Rectangle[] r: rArray){
@@ -269,9 +278,9 @@ public class PiecePane extends Pane {
                 }
             }
         }
-        if(changePos){
-            for(Rectangle r : rArray.get(rArray.size()-1)){
-                r.setX(r.getX()-dx);
+        if (changePos) {
+            for (Rectangle r : rArray.get(rArray.size() - 1)) {
+                r.setX(r.getX() - dx);
             }
         }
         dx = 0;
@@ -280,4 +289,5 @@ public class PiecePane extends Pane {
         // rArray.get(rArray.size()-1).setY(y);
         waitTime -= 1;
     }
+
 }
