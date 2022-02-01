@@ -74,4 +74,6 @@ public class PiecePane extends Pane {
         r1.setX(x);
         r1.setY(y);
     }
+
+  
 }
