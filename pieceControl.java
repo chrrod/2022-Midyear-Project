@@ -2,16 +2,13 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Observable;
-
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class pieceControl extends Application {
     public boolean isPaused;
