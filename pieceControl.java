@@ -28,8 +28,8 @@ public class pieceControl extends Application {
             if(e.getCode() == KeyCode.LEFT){
                 piecePane.left();
             }
-            if (e.getCode() == KeyCode.UP) {
-                piecePane.up();
+            if (e.getCode() == KeyCode.SPACE) {
+                piecePane.space();
             }
             
         });
