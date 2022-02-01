@@ -48,6 +48,9 @@ public class pieceControl extends Application {
                 if (e.getCode() == KeyCode.UP) {
                     piecePane.up();
                 }
+                if(e.getCode() == KeyCode.SPACE){
+                    piecePane.space();
+                }
             }
 
             if (e.getCode() == KeyCode.ESCAPE) {
