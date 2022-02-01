@@ -17,8 +17,8 @@ public class pieceControl extends Application {
         PiecePane piecePane = new PiecePane();
 
         // Load the pause image
-        Image image = new Image("Spreadsheet.png");
-        ImageView imageView = new ImageView(image);
+        Image image = new Image("VsCode.png");
+        ImageView imageView = new ImageView();
 
         // Pause and resume animation
         piecePane.setOnMousePressed(e -> piecePane.pause());

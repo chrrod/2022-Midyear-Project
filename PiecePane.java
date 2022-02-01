@@ -36,7 +36,7 @@ public class PiecePane extends Pane {
     private ImageView imageView;
 
     public PiecePane() {
-        spreadsheetImage = new Image("Spreadsheet.png");
+        spreadsheetImage = new Image("VsCode.png");
         imageView = new ImageView();
         imageView.setImage(spreadsheetImage);
         rArray = new ArrayList<>();
@@ -247,5 +247,4 @@ public class PiecePane extends Pane {
         waitTime -= 1;
     }
 
-  
 }
