@@ -12,6 +12,7 @@ import java.io.InputStream;
 
 public class pieceControl extends Application {
     public boolean isPaused;
+    private boolean down = false;
 
     public void start(Stage primaryStage) {
         PiecePane piecePane = new PiecePane();
@@ -26,6 +27,9 @@ public class pieceControl extends Application {
         // Increase and decrease animation
         piecePane.setOnKeyPressed(e -> {
             {
+                if(down){
+                    piecePane.down();
+                }
                 // if (e.getCode() == KeyCode.UP) {
                 // piecePane.increaseSpeed();
                 // }
@@ -48,6 +52,10 @@ public class pieceControl extends Application {
                 if(e.getCode() == KeyCode.SPACE){
                     piecePane.space();
                 }
+                if(e.getCode() == KeyCode.DOWN){
+                    down = true;
+                    piecePane.down();
+                }
             }
 
             if (e.getCode() == KeyCode.ESCAPE) {
@@ -63,6 +71,17 @@ public class pieceControl extends Application {
             }
 
         });
+        piecePane.setOnKeyReleased(e-> {
+            {
+
+            }
+            if(e.getCode() == KeyCode.DOWN){
+                down = false;
+                piecePane.reset();
+            }
+        });
+
+        System.out.println(down);
         // Create a scene and place it in the stage
         Scene scene = new Scene(piecePane, 250, 500);
         primaryStage.setTitle("PieceMovement"); // Set the stage title
@@ -71,4 +90,5 @@ public class pieceControl extends Application {
         // Must request focus after the primary stage is displayed
         piecePane.requestFocus();
     }
+
 }
