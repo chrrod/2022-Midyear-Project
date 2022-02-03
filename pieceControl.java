@@ -20,6 +20,7 @@ public class pieceControl extends Application {
         // Load the pause image
         Image image = new Image("VsCode.png");
         ImageView imageView = new ImageView();
+        imageView.setPreserveRatio(false);
 
         // Pause and resume animation
         piecePane.setOnMousePressed(e -> piecePane.pause());
@@ -49,7 +50,8 @@ public class pieceControl extends Application {
                 if (e.getCode() == KeyCode.LEFT) {
                     piecePane.left();
                 }
-                if(e.getCode() == KeyCode.SPACE){
+
+                if (e.getCode() == KeyCode.SPACE) {
                     piecePane.space();
                 }
                 if(e.getCode() == KeyCode.DOWN){

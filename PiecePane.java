@@ -53,6 +53,7 @@ public class PiecePane extends Pane {
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play(); // Start animation
         speed = animation.getRate()*5;//was *1
+        animation.setRate(speed);
         System.out.println(speed);
     }
 
