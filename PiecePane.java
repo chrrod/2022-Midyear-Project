@@ -234,7 +234,7 @@ public class PiecePane extends Pane {
         boolean needToCheck = true;
         for(Rectangle r : rArray.get(rArray.size()-1)){
             if(r.getY()>=getHeight()-21&&needToCheck){//changed -20 to -21
-                end();
+                space();//end();
                 needToCheck = false;
             }
             // r.setX(r.getX() + dx);
