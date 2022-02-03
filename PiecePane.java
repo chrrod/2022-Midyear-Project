@@ -42,9 +42,11 @@ public class PiecePane extends Pane {
         rArray = new ArrayList<>();
         // r1.setFill(Color.GREEN); // Set ball color
         //// getChildren().add(r1); // Place a ball into this pane
-        r1 = blocks.random();
-        rArray.add(r1);
-        getChildren().addAll(rArray.get(rArray.size() - 1));
+
+        // r1 = blocks.random();
+        // rArray.add(r1);
+        // getChildren().addAll(rArray.get(rArray.size() - 1));
+        end();
         // Create an animation for moving the ball
         animation = new Timeline(
                 new KeyFrame(Duration.millis(50), e -> move()));
@@ -76,6 +78,7 @@ public class PiecePane extends Pane {
         boolean collisionDetected = false;
         // for(Rectangle rect: rArray) {
         for (Rectangle[] rect : rArray) {
+<<<<<<< HEAD
             if (!(rect.equals(r)) && !(rect.equals(rArray.get(rArray.size() - 1)))) {
                 // rect.setFill(Color.GREEN);
                 for (int i = 0; i < 4; i++) {
@@ -98,6 +101,24 @@ public class PiecePane extends Pane {
                     }
                     if (r[3].getBoundsInParent().intersects(rect[i].getBoundsInParent())
                             && r[3].getY() == rect[i].getY() - 20 && r[3].getX() == rect[i].getX()) {
+=======
+            if (!(rect.equals(r))&&!(rect.equals(rArray.get(rArray.size()-1)))) {
+                //rect.setFill(Color.GREEN);
+                for(int i = 0; i < 4; i++){
+                    // if (r.getBoundsInParent().intersects(rect.getBoundsInParent())&&r.getY()==rect.getY()-50&&r.getX()==rect.getX()) {
+                    //     collisionDetected = true;
+                    // }   
+                    if (r[0].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[0].getY()==rect[i].getY()-20&&r[0].getX()==rect[i].getX()) {
+                        collisionDetected = true;
+                    } 
+                    if (r[1].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[1].getY()==rect[i].getY()-20&&r[1].getX()==rect[i].getX()) {
+                        collisionDetected = true;
+                    }
+                    if (r[2].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[2].getY()==rect[i].getY()-20&&r[2].getX()==rect[i].getX()) {
+                        collisionDetected = true;
+                    }
+                    if (r[3].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[3].getY()==rect[i].getY()-20&&r[3].getX()==rect[i].getX()) {
+>>>>>>> 41d221eb5bc0dd1b5cda06cf41227fcf3010c7b6
                         collisionDetected = true;
                     }
                 }

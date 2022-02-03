@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class pieceControl extends Application {
-    public boolean isPaused;
+    private boolean isPaused;
 
     public void start(Stage primaryStage) {
         PiecePane piecePane = new PiecePane();
@@ -19,6 +19,7 @@ public class pieceControl extends Application {
         // Load the pause image
         Image image = new Image("VsCode.png");
         ImageView imageView = new ImageView();
+        imageView.setPreserveRatio(false);
 
         // Pause and resume animation
         piecePane.setOnMousePressed(e -> piecePane.pause());
@@ -45,6 +46,7 @@ public class pieceControl extends Application {
                 if (e.getCode() == KeyCode.LEFT) {
                     piecePane.left();
                 }
+
                 if (e.getCode() == KeyCode.SPACE) {
                     piecePane.space();
                 }
