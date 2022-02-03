@@ -79,6 +79,7 @@ public class PiecePane extends Pane {
         // for(Rectangle rect: rArray) {
         for (Rectangle[] rect : rArray) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (!(rect.equals(r)) && !(rect.equals(rArray.get(rArray.size() - 1)))) {
                 // rect.setFill(Color.GREEN);
                 for (int i = 0; i < 4; i++) {
@@ -102,6 +103,8 @@ public class PiecePane extends Pane {
                     if (r[3].getBoundsInParent().intersects(rect[i].getBoundsInParent())
                             && r[3].getY() == rect[i].getY() - 20 && r[3].getX() == rect[i].getX()) {
 =======
+=======
+>>>>>>> 41d221eb5bc0dd1b5cda06cf41227fcf3010c7b6
             if (!(rect.equals(r))&&!(rect.equals(rArray.get(rArray.size()-1)))) {
                 //rect.setFill(Color.GREEN);
                 for(int i = 0; i < 4; i++){
@@ -118,6 +121,9 @@ public class PiecePane extends Pane {
                         collisionDetected = true;
                     }
                     if (r[3].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[3].getY()==rect[i].getY()-20&&r[3].getX()==rect[i].getX()) {
+<<<<<<< HEAD
+>>>>>>> 41d221eb5bc0dd1b5cda06cf41227fcf3010c7b6
+=======
 >>>>>>> 41d221eb5bc0dd1b5cda06cf41227fcf3010c7b6
                         collisionDetected = true;
                     }
