@@ -249,7 +249,7 @@ public class PiecePane extends Pane {
             }
         }
         for(Rectangle r : rArray.get(rArray.size()-1)){
-            if(r.getX()>getWidth()/2+100/*(getWidth()/2+(r.getX()-rArray.get(rArray.size()-1)[0].getX()+80)*/ || r.getX()<getWidth()/2-80/*(getWidth()/2+(r.getX()-rArray.get(rArray.size()-1)[0].getX())-60*/){
+            if(r.getX()>getWidth()/2+100|| r.getX()<getWidth()/2-80){
                 changePos = true;
             }
         }
