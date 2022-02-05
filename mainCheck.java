@@ -286,7 +286,7 @@ public Rectangle[] tBlock(){
   vertical1.setWidth(20);
   vertical1.setHeight(20);
   vertical1.setX(120);//was 100
-  vertical1.setY(10);  
+  vertical1.setY(10); 
   vertical1.setStroke(Color.BLACK);
   vertical1.setFill(Color.PURPLE); 
 

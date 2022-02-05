@@ -21,6 +21,7 @@ import javafx.scene.shape.*;
 
 public class PiecePane extends Pane {
     public final double radius = 20;
+    boolean firstMove = true;
     private double x = radius, y = radius;
     private double dx = 1, dy = 1;
     private ArrayList<Rectangle[]> rArray;
@@ -47,6 +48,7 @@ public class PiecePane extends Pane {
         // rArray.add(r1);
         // getChildren().addAll(rArray.get(rArray.size() - 1));
         end();
+        firstPos();
         // Create an animation for moving the ball
         animation = new Timeline(
                 new KeyFrame(Duration.millis(50), e -> move()));
@@ -77,19 +79,6 @@ public class PiecePane extends Pane {
 
     private void checkBounds(Rectangle[] r) {
         boolean collisionDetected = false;
-
-        // for(Rectangle[] rect : rArray){
-        //     if(!(rect.equals(rArray.get(rArray.size()-1)))){
-        //         for(int i = 0; i < 4; i++){
-        //             for(int j = 0; j<4; j++){
-        //                 if(rect[j].getBoundsInParent().intersects(rArray.get(rArray.size()-1)[i].getBoundsInParent())&&rect[j].getX()==rArray.get(rArray.size()-1)[i].getX()){
-        //                     collisionDetected = true;
-        //                 }     
-        //             }
-        //         }
-                
-        //     }
-        // }
 
         for(int i = 0; i< rArray.size()-1; i++){
             for(int j = 0; j < 4; j++){
@@ -142,7 +131,7 @@ public class PiecePane extends Pane {
                 heightDifference = getHeight()-rArray.get(rArray.size()-1)[i].getY();
             }
         }
-        
+        heightDifference-=25;//new
         // for(Rectangle rect : rArray){
         // if(rect!=rArray.get(rArray.size()-1)){
         // if(rect.getX() == rArray.get(rArray.size()-1).getX()){
@@ -154,30 +143,6 @@ public class PiecePane extends Pane {
         for(Rectangle[] rect: rArray){
             if(!(rect.equals(rArray.get(rArray.size()-1)))){
                 for(Rectangle r : rect){
-                    // if(r.getX() == rArray.get(rArray.size()-1)[0].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[0].getY();
-                    //     }
-                    // }
-                    // if(r.getX() == rArray.get(rArray.size()-1)[1].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[1].getY();
-                    //     }
-                    // }
-                    // if(r.getX() == rArray.get(rArray.size()-1)[2].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[2].getY();
-                    //     }
-                    // }
-                    // if(r.getX() == rArray.get(rArray.size()-1)[3].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[3].getY();
-                    //     }
-                    // }
                     for(Rectangle l : rArray.get(rArray.size()-1)){
                         if(r.getX() == l.getX()){
                             if(r.getY()-l.getY()< heightDifference){
@@ -189,24 +154,12 @@ public class PiecePane extends Pane {
             }
         }
         for(Rectangle r : rArray.get(rArray.size()-1)){
-            r.setY(r.getY()+heightDifference-20);
+            r.setY(r.getY()+heightDifference-20);//was -20
         }
         end();
     }
 
-    // public void stop(){
-    // dx = 0;
-    // dy = 0;
-    // //Rectangle copy = new Rectangle(x, y, 50, 50);
-    // //copy.setFill(Color.GREEN); // Set ball color
-    // //getChildren().add(r1);
-    // rArray.add(blocks.random());
-    // pos++;
-    // getChildren().add(rArray.get(rArray.size()-1));
-    // x = rArray.get(rArray.size()-1).getX();
-    // y = rArray.get(rArray.size()-1).getX();
-    // System.out.println(pos+" " + rArray.size());
-    // }
+    
 
     public DoubleProperty rateProperty() {
         return animation.rateProperty();
@@ -223,17 +176,32 @@ public class PiecePane extends Pane {
         rArray.add(blocks.random());
         pos++;
         getChildren().addAll(rArray.get(rArray.size() - 1));
-        // x = rArray.get(rArray.size()-1).getX();
-        // y = rArray.get(rArray.size()-1).getX();
+        firstPos();
+
         waitTime = 0;
     }
 
+    public void firstPos() {
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            if(!(r.equals(rArray.get(rArray.size()-1)[0]))){
+                r.setX(getWidth()/2/*-20*/+(r.getX()-rArray.get(rArray.size()-1)[0].getX()));
+                r.setY(84+(r.getY()-rArray.get(rArray.size()-1)[0].getY()));
+            }
+        }
+        rArray.get(rArray.size()-1)[0].setX(getWidth()/2/*-20*/);
+        rArray.get(rArray.size()-1)[0].setY(84);//was 38
+    }
+
     protected void move() {
+        if(firstMove){
+            firstPos();
+            firstMove = false;
+        }
         checkBounds(rArray.get(rArray.size() - 1));
         // Check boundaries
         boolean needToCheck = true;
         for(Rectangle r : rArray.get(rArray.size()-1)){
-            if(r.getY()>=getHeight()-21&&needToCheck){//changed -20 to -21
+            if(r.getY()>=getHeight()-46&&needToCheck){//changed -20 to -21//changed from -21 to -46
                 space();//end();
                 needToCheck = false;
             }
@@ -278,6 +246,11 @@ public class PiecePane extends Pane {
                         }
                     }
                 }
+            }
+        }
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            if(r.getX()>getWidth()/2+100/*(getWidth()/2+(r.getX()-rArray.get(rArray.size()-1)[0].getX()+80)*/ || r.getX()<getWidth()/2-80/*(getWidth()/2+(r.getX()-rArray.get(rArray.size()-1)[0].getX())-60*/){
+                changePos = true;
             }
         }
         if (changePos) {

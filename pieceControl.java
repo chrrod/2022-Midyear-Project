@@ -9,6 +9,11 @@ import javafx.scene.layout.VBox;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundSize;
 
 public class pieceControl extends Application {
     public boolean isPaused;
@@ -85,12 +90,18 @@ public class pieceControl extends Application {
 
         System.out.println(down);
         // Create a scene and place it in the stage
-        Scene scene = new Scene(piecePane, 250, 500);
+        Scene scene = new Scene(piecePane, 692, 510);//was 250 by 500
         primaryStage.setTitle("PieceMovement"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
         // Must request focus after the primary stage is displayed
         piecePane.requestFocus();
+
+        BackgroundImage myBI= new BackgroundImage(new Image("tetrisBoard.png",692,510,false,true),//was 705
+        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
+        //then you set to your node
+        piecePane.setBackground(new Background(myBI));
     }
 
 }
