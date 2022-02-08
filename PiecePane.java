@@ -21,6 +21,7 @@ import javafx.scene.shape.*;
 
 public class PiecePane extends Pane {
     public final double radius = 20;
+    boolean firstMove = true;
     private double x = radius, y = radius;
     private double dx = 1, dy = 1;
     private ArrayList<Rectangle[]> rArray;
@@ -48,12 +49,14 @@ public class PiecePane extends Pane {
         // rArray.add(r1);
         // getChildren().addAll(rArray.get(rArray.size() - 1));
         end();
+        firstPos();
         // Create an animation for moving the ball
         animation = new Timeline(
                 new KeyFrame(Duration.millis(50), e -> move()));
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play(); // Start animation
-        speed = animation.getRate();
+        speed = animation.getRate()*5;//was *1
+        animation.setRate(speed);
         System.out.println(speed);
     }
 
@@ -67,8 +70,8 @@ public class PiecePane extends Pane {
         getChildren().add(imageView);
     }
 
-    public void increaseSpeed() {// not ready to be implemented yet, need to add checker for multple key press.
-        animation.setRate(speed + 15);
+    public void down() {
+        animation.setRate(speed*5);
     }
 
     public void reset() {
@@ -77,34 +80,11 @@ public class PiecePane extends Pane {
 
     private void checkBounds(Rectangle[] r) {
         boolean collisionDetected = false;
-        // for(Rectangle rect: rArray) {
-        for (Rectangle[] rect : rArray) {
-            if (!(rect.equals(r))&&!(rect.equals(rArray.get(rArray.size()-1)))) {
-                //rect.setFill(Color.GREEN);
-                for(int i = 0; i < 4; i++){
-                    // if (r.getBoundsInParent().intersects(rect.getBoundsInParent())&&r.getY()==rect.getY()-50&&r.getX()==rect.getX()) {
-                    //     collisionDetected = true;
-                    // }   
-                    if (r[0].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[0].getY()==rect[i].getY()-20&&r[0].getX()==rect[i].getX()) {
-                        collisionDetected = true;
-                    } 
-                    if (r[1].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[1].getY()==rect[i].getY()-20&&r[1].getX()==rect[i].getX()) {
-                        collisionDetected = true;
-                    }
-                    if (r[2].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[2].getY()==rect[i].getY()-20&&r[2].getX()==rect[i].getX()) {
-                        collisionDetected = true;
-                    }
-                    if (r[3].getBoundsInParent().intersects(rect[i].getBoundsInParent())&&r[3].getY()==rect[i].getY()-20&&r[3].getX()==rect[i].getX()) {
-                        collisionDetected = true;
-                    }
-                }
-            }
-        }
-        //
+
         for(int i = 0; i< rArray.size()-1; i++){
             for(int j = 0; j < 4; j++){
                 for(int l = 0; l<4; l++){
-                    if(r[j].getY() <= rArray.get(i)[l].getY()&&r[j].getY()>=rArray.get(i)[l].getY()-20&&r[j].getX()<=rArray.get(i)[l].getX()+10&&r[j].getX()>=rArray.get(i)[l].getX()-10){
+                    if(r[j].getY() <= rArray.get(i)[l].getY()&&r[j].getY()>=rArray.get(i)[l].getY()-20&&r[j].getX()<=rArray.get(i)[l].getX()&&r[j].getX()>=rArray.get(i)[l].getX()){// -20 changed to -21 and +-10 changed to 5//then changed to 0
                         collisionDetected = true;
                     }
                 }
@@ -126,14 +106,14 @@ public class PiecePane extends Pane {
     public void left(){
         if(waitTime <=0){
             dx = -20;   
-            waitTime = 5; 
+            waitTime = 0;//was 5 
         }        
     }
 
     public void right(){
         if(waitTime <= 0){
             dx = 20;    
-            waitTime = 5;
+            waitTime = 0;//was 5
         }
     }
     
@@ -152,7 +132,7 @@ public class PiecePane extends Pane {
                 heightDifference = getHeight()-rArray.get(rArray.size()-1)[i].getY();
             }
         }
-        
+        heightDifference-=25;//new
         // for(Rectangle rect : rArray){
         // if(rect!=rArray.get(rArray.size()-1)){
         // if(rect.getX() == rArray.get(rArray.size()-1).getX()){
@@ -164,30 +144,6 @@ public class PiecePane extends Pane {
         for(Rectangle[] rect: rArray){
             if(!(rect.equals(rArray.get(rArray.size()-1)))){
                 for(Rectangle r : rect){
-                    // if(r.getX() == rArray.get(rArray.size()-1)[0].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[0].getY();
-                    //     }
-                    // }
-                    // if(r.getX() == rArray.get(rArray.size()-1)[1].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[1].getY();
-                    //     }
-                    // }
-                    // if(r.getX() == rArray.get(rArray.size()-1)[2].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[2].getY();
-                    //     }
-                    // }
-                    // if(r.getX() == rArray.get(rArray.size()-1)[3].getX()){
-                    //     if(r.getY()<maxHeight){
-                    //         maxHeight = r.getY();
-                    //         heightDifference = r.getY() - rArray.get(rArray.size()-1)[3].getY();
-                    //     }
-                    // }
                     for(Rectangle l : rArray.get(rArray.size()-1)){
                         if(r.getX() == l.getX()){
                             if(r.getY()-l.getY()< heightDifference){
@@ -199,24 +155,12 @@ public class PiecePane extends Pane {
             }
         }
         for(Rectangle r : rArray.get(rArray.size()-1)){
-            r.setY(r.getY()+heightDifference-20);
+            r.setY(r.getY()+heightDifference-20);//was -20
         }
         end();
     }
 
-    // public void stop(){
-    // dx = 0;
-    // dy = 0;
-    // //Rectangle copy = new Rectangle(x, y, 50, 50);
-    // //copy.setFill(Color.GREEN); // Set ball color
-    // //getChildren().add(r1);
-    // rArray.add(blocks.random());
-    // pos++;
-    // getChildren().add(rArray.get(rArray.size()-1));
-    // x = rArray.get(rArray.size()-1).getX();
-    // y = rArray.get(rArray.size()-1).getX();
-    // System.out.println(pos+" " + rArray.size());
-    // }
+    
 
     public DoubleProperty rateProperty() {
         return animation.rateProperty();
@@ -228,25 +172,48 @@ public class PiecePane extends Pane {
         // Rectangle copy = new Rectangle(25, 25, 50, 50);
         // copy.setFill(Color.GREEN); // Set ball color
         // getChildren().add(r1);
+        //trying something new
+
         rArray.add(blocks.random());
         pos++;
         getChildren().addAll(rArray.get(rArray.size() - 1));
-        // x = rArray.get(rArray.size()-1).getX();
-        // y = rArray.get(rArray.size()-1).getX();
+        firstPos();
+
         waitTime = 0;
     }
 
+    public void firstPos() {
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            if(!(r.equals(rArray.get(rArray.size()-1)[0]))){
+                r.setX(getWidth()/2/*-20*/+(r.getX()-rArray.get(rArray.size()-1)[0].getX()));
+                r.setY(84+(r.getY()-rArray.get(rArray.size()-1)[0].getY()));
+            }
+        }
+        rArray.get(rArray.size()-1)[0].setX(getWidth()/2/*-20*/);
+        rArray.get(rArray.size()-1)[0].setY(84);//was 38
+    }
+
     protected void move() {
+        if(firstMove){
+            firstPos();
+            firstMove = false;
+        }
         checkBounds(rArray.get(rArray.size() - 1));
         // Check boundaries
         boolean needToCheck = true;
         for(Rectangle r : rArray.get(rArray.size()-1)){
-            if(r.getY()>getHeight()-20&&needToCheck){
-                end();
+            if(r.getY()>=getHeight()-46&&needToCheck){//changed -20 to -21//changed from -21 to -46
+                space();//end();
                 needToCheck = false;
             }
-            r.setX(r.getX() + dx);
-            r.setY(r.getY() + 3);
+            // r.setX(r.getX() + dx);
+            // r.setY(r.getY() + 3);
+        }
+        if(needToCheck){
+            for(Rectangle r : rArray.get(rArray.size()-1)){
+                r.setX(r.getX()+dx);
+                r.setY(r.getY()+1);
+            }
         }
 
         // if (y > getHeight() - 25) {
@@ -273,13 +240,18 @@ public class PiecePane extends Pane {
             if(!(r.equals(rArray.get(rArray.size()-1)))){
                 for(int i = 0; i<4; i++){
                     for(int j = 0; j<4; j++){
-                        if(r[j].getX()>=rArray.get(rArray.size()-1)[i].getX()-19&&r[j].getX()<=rArray.get(rArray.size()-1)[i].getX()+19){
-                            if(r[j].getY()>=rArray.get(rArray.size()-1)[i].getY()-19&&r[j].getY()<=rArray.get(rArray.size()-1)[i].getY()+19){
+                        if(r[j].getX()/*<*/==rArray.get(rArray.size()-1)[i].getX()/*-0&&r[j].getX()<=rArray.get(rArray.size()-1)[i].getX()+0*/){//changed from 19 to 0
+                            if(r[j].getY()>=rArray.get(rArray.size()-1)[i].getY()-10/*-19*/&&r[j].getY()<=rArray.get(rArray.size()-1)[i].getY()+19){////changed from 19 to 18
                                 changePos = true;
                             }
                         }
                     }
                 }
+            }
+        }
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            if(r.getX()>getWidth()/2+100|| r.getX()<getWidth()/2-80){
+                changePos = true;
             }
         }
         if (changePos) {
