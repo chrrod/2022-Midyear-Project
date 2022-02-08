@@ -97,7 +97,7 @@ public class pieceControl extends Application {
         // Must request focus after the primary stage is displayed
         piecePane.requestFocus();
 
-        BackgroundImage myBI= new BackgroundImage(new Image("tetrisBoard.png",692,510,false,true),//was 705
+        BackgroundImage myBI= new BackgroundImage(new Image("tetrisBoardBlank.png",692,510,false,true),//was 705
         BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
         BackgroundSize.DEFAULT);
         //then you set to your node

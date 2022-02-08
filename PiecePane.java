@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import javafx.scene.shape.Rectangle;
-
+import javafx.scene.text.Text;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.*;
@@ -57,6 +57,34 @@ public class PiecePane extends Pane {
         speed = animation.getRate()*5;//was *1
         animation.setRate(speed);
         System.out.println(speed);
+        Text t = new Text (83, 68, "A-TYPE");
+        t.setFill(Color.WHITE);
+        t.setStyle("-fx-font: 35 arial;");
+        getChildren().add(t);
+        Text l = new Text (300, 50, "LINES-");
+        l.setFill(Color.WHITE);
+        l.setStyle("-fx-font: 40 arial;");
+        getChildren().add(l);
+        Text s = new Text (59, 163, "STATISTICS");
+        s.setFill(Color.WHITE);
+        s.setStyle("-fx-font: 30 arial;");
+        getChildren().add(s);
+        Text top = new Text (510, 68, "TOP");
+        top.setFill(Color.WHITE);
+        top.setStyle("-fx-font: 30 arial;");
+        getChildren().add(top);
+        Text score = new Text (510, 130, "SCORE");
+        score.setFill(Color.WHITE);
+        score.setStyle("-fx-font: 30 arial;");
+        getChildren().add(score);
+        Text n = new Text (505, 250, "NEXT");
+        n.setFill(Color.WHITE);
+        n.setStyle("-fx-font: 30 arial;");
+        getChildren().add(n);
+        Text level = new Text (505, 385, "LEVEL");
+        level.setFill(Color.WHITE);
+        level.setStyle("-fx-font: 30 arial;");
+        getChildren().add(level);
     }
 
     public void play() {
