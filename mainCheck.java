@@ -9,13 +9,19 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class mainCheck extends Application{
+  boolean ifVertical = false;
+  boolean ifSquare = false;
+  boolean iflBlock = false;
+  boolean ifoBlock = false;
+  boolean ifsBlock = false;
+    
     //@Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
         // Create rectangles
         Rectangle r1 = new Rectangle(25, 10, 300, 600);
         r1.setStroke(Color.BLACK);
         r1.setFill(Color.BLACK);
-        Rectangle[] new1 = zBlock();
+        Rectangle[] new1 = lBlock();
         
         // Rectangle r2 = new Rectangle(25, 50, 60, 30);
         // Rectangle r3 = new Rectangle(25, 90, 60, 30);
@@ -47,6 +53,8 @@ public class mainCheck extends Application{
     }
 
     public Rectangle[] vertical(){
+      
+
         Rectangle[] pieces = new Rectangle[4];
         Rectangle vertical1 = new Rectangle();  
       
