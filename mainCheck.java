@@ -9,13 +9,19 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class mainCheck extends Application{
+  boolean ifVertical = false;
+  boolean ifSquare = false;
+  boolean iflBlock = false;
+  boolean ifoBlock = false;
+  boolean ifsBlock = false;
+    
     //@Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
         // Create rectangles
         Rectangle r1 = new Rectangle(25, 10, 300, 600);
         r1.setStroke(Color.BLACK);
         r1.setFill(Color.BLACK);
-        Rectangle[] new1 = zBlock();
+        Rectangle[] new1 = lBlock();
         
         // Rectangle r2 = new Rectangle(25, 50, 60, 30);
         // Rectangle r3 = new Rectangle(25, 90, 60, 30);
@@ -47,6 +53,8 @@ public class mainCheck extends Application{
     }
 
     public Rectangle[] vertical(){
+      
+
         Rectangle[] pieces = new Rectangle[4];
         Rectangle vertical1 = new Rectangle();  
       
@@ -55,8 +63,8 @@ public class mainCheck extends Application{
         vertical1.setHeight(20);
         vertical1.setX(100);
         vertical1.setY(10);  
-        vertical1.setStroke(Color.BLUE);
-        vertical1.setFill(Color.BLUE); 
+        vertical1.setStroke(Color.BLACK);
+        vertical1.setFill(Color.AQUA); 
 
         pieces[0] = vertical1;
         Rectangle vertical2 = new Rectangle();  
@@ -65,8 +73,8 @@ public class mainCheck extends Application{
         vertical2.setHeight(20);
         vertical2.setX(120);
         vertical2.setY(10);  
-        vertical2.setStroke(Color.BLUE);
-        vertical2.setFill(Color.BLUE);
+        vertical2.setStroke(Color.BLACK);
+        vertical2.setFill(Color.AQUA);
         
         pieces[1] = vertical2;
         Rectangle vertical3 = new Rectangle();  
@@ -75,8 +83,8 @@ public class mainCheck extends Application{
         vertical3.setHeight(20);
         vertical3.setX(140);
         vertical3.setY(10);  
-        vertical3.setStroke(Color.BLUE);
-        vertical3.setFill(Color.BLUE); 
+        vertical3.setStroke(Color.BLACK);
+        vertical3.setFill(Color.AQUA); 
         pieces[2] = vertical3;
 
       
@@ -86,8 +94,8 @@ public class mainCheck extends Application{
         vertical4.setHeight(20);
         vertical4.setX(160);
         vertical4.setY(10);  
-        vertical4.setStroke(Color.BLUE);
-        vertical4.setFill(Color.BLUE); 
+        vertical4.setStroke(Color.BLACK);
+        vertical4.setFill(Color.AQUA); 
         pieces[3] = vertical4;
         return pieces;
     }
@@ -101,7 +109,7 @@ public class mainCheck extends Application{
         vertical1.setHeight(20);
         vertical1.setX(120);//wa 100
         vertical1.setY(10);  
-        vertical1.setStroke(Color.YELLOW);
+        vertical1.setStroke(Color.BLACK);
         vertical1.setFill(Color.YELLOW); 
 
         pieces[0] = vertical1;
@@ -111,7 +119,7 @@ public class mainCheck extends Application{
         vertical2.setHeight(20);
         vertical2.setX(140);//was 120
         vertical2.setY(10);  
-        vertical2.setStroke(Color.YELLOW);
+        vertical2.setStroke(Color.BLACK);
         vertical2.setFill(Color.YELLOW);
         
         pieces[1] = vertical2;
@@ -121,7 +129,7 @@ public class mainCheck extends Application{
         vertical3.setHeight(20);
         vertical3.setX(120);//was 100
         vertical3.setY(30);  
-        vertical3.setStroke(Color.YELLOW);
+        vertical3.setStroke(Color.BLACK);
         vertical3.setFill(Color.YELLOW); 
         pieces[2] = vertical3;
 
@@ -132,7 +140,7 @@ public class mainCheck extends Application{
         vertical4.setHeight(20);
         vertical4.setX(140);//was 120
         vertical4.setY(30);  
-        vertical4.setStroke(Color.YELLOW);
+        vertical4.setStroke(Color.BLACK);
         vertical4.setFill(Color.YELLOW); 
         pieces[3] = vertical4;
         return pieces;
@@ -149,7 +157,7 @@ public class mainCheck extends Application{
       vertical1.setHeight(20);
       vertical1.setX(140);//was 100
       vertical1.setY(10);  
-      vertical1.setStroke(Color.BLUE);
+      vertical1.setStroke(Color.BLACK);
       vertical1.setFill(Color.BLUE); 
 
       pieces[0] = vertical1;
@@ -159,7 +167,7 @@ public class mainCheck extends Application{
       vertical2.setHeight(20);
       vertical2.setX(140);//was 100
       vertical2.setY(30);  
-      vertical2.setStroke(Color.BLUE);
+      vertical2.setStroke(Color.BLACK);
       vertical2.setFill(Color.BLUE);
     
       pieces[1] = vertical2;
@@ -169,7 +177,7 @@ public class mainCheck extends Application{
       vertical3.setHeight(20);
       vertical3.setX(140);//was 120
       vertical3.setY(50);//was 30  
-      vertical3.setStroke(Color.BLUE);
+      vertical3.setStroke(Color.BLACK);
       vertical3.setFill(Color.BLUE); 
       pieces[2] = vertical3;
 
@@ -180,7 +188,7 @@ public class mainCheck extends Application{
       vertical4.setHeight(20);
       vertical4.setX(120);//was 140
       vertical4.setY(50);//was 30  
-      vertical4.setStroke(Color.BLUE);
+      vertical4.setStroke(Color.BLACK);
       vertical4.setFill(Color.BLUE); 
       pieces[3] = vertical4;
       return pieces;
@@ -195,7 +203,7 @@ public class mainCheck extends Application{
     vertical1.setHeight(20);
     vertical1.setX(120);//was 140
     vertical1.setY(10);  
-    vertical1.setStroke(Color.ORANGE);
+    vertical1.setStroke(Color.BLACK);
     vertical1.setFill(Color.ORANGE); 
 
     pieces[0] = vertical1;
@@ -205,7 +213,7 @@ public class mainCheck extends Application{
     vertical2.setHeight(20);
     vertical2.setX(120);//was 140
     vertical2.setY(30);  
-    vertical2.setStroke(Color.ORANGE);
+    vertical2.setStroke(Color.BLACK);
     vertical2.setFill(Color.ORANGE);
     
     pieces[1] = vertical2;
@@ -215,7 +223,7 @@ public class mainCheck extends Application{
     vertical3.setHeight(20);
     vertical3.setX(120);
     vertical3.setY(50); //was 30 
-    vertical3.setStroke(Color.ORANGE);
+    vertical3.setStroke(Color.BLACK);
     vertical3.setFill(Color.ORANGE); 
     pieces[2] = vertical3;
 
@@ -226,7 +234,7 @@ public class mainCheck extends Application{
     vertical4.setHeight(20);
     vertical4.setX(140);//was 100
     vertical4.setY(50);//was 20  
-    vertical4.setStroke(Color.ORANGE);
+    vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.ORANGE); 
     pieces[3] = vertical4;
     return pieces;
@@ -241,8 +249,8 @@ public class mainCheck extends Application{
     vertical1.setHeight(20);
     vertical1.setX(140);//was 120
     vertical1.setY(10);  
-    vertical1.setStroke(Color.GREEN);
-    vertical1.setFill(Color.GREEN); 
+    vertical1.setStroke(Color.BLACK);
+    vertical1.setFill(Color.CHARTREUSE); 
 
     pieces[0] = vertical1;
     Rectangle vertical2 = new Rectangle();  
@@ -251,8 +259,8 @@ public class mainCheck extends Application{
     vertical2.setHeight(20);
     vertical2.setX(120);//was 100
     vertical2.setY(10);  
-    vertical2.setStroke(Color.GREEN);
-    vertical2.setFill(Color.GREEN);
+    vertical2.setStroke(Color.BLACK);
+    vertical2.setFill(Color.CHARTREUSE);
     
     pieces[1] = vertical2;
     Rectangle vertical3 = new Rectangle();  
@@ -261,8 +269,8 @@ public class mainCheck extends Application{
     vertical3.setHeight(20);
     vertical3.setX(120);//was 100
     vertical3.setY(30);  
-    vertical3.setStroke(Color.GREEN);
-    vertical3.setFill(Color.GREEN); 
+    vertical3.setStroke(Color.BLACK);
+    vertical3.setFill(Color.CHARTREUSE); 
     pieces[2] = vertical3;
 
   
@@ -272,8 +280,8 @@ public class mainCheck extends Application{
     vertical4.setHeight(20);
     vertical4.setX(100);//was 80
     vertical4.setY(30);  
-    vertical4.setStroke(Color.GREEN);
-    vertical4.setFill(Color.GREEN); 
+    vertical4.setStroke(Color.BLACK);
+    vertical4.setFill(Color.CHARTREUSE); 
     pieces[3] = vertical4;
     return pieces;
 }
@@ -286,8 +294,8 @@ public Rectangle[] tBlock(){
   vertical1.setWidth(20);
   vertical1.setHeight(20);
   vertical1.setX(120);//was 100
-  vertical1.setY(10);  
-  vertical1.setStroke(Color.PURPLE);
+  vertical1.setY(10); 
+  vertical1.setStroke(Color.BLACK);
   vertical1.setFill(Color.PURPLE); 
 
   pieces[0] = vertical1;
@@ -297,7 +305,7 @@ public Rectangle[] tBlock(){
   vertical2.setHeight(20);
   vertical2.setX(120);//was 100
   vertical2.setY(30);  
-  vertical2.setStroke(Color.PURPLE);
+  vertical2.setStroke(Color.BLACK);
   vertical2.setFill(Color.PURPLE);
   
   pieces[1] = vertical2;
@@ -307,7 +315,7 @@ public Rectangle[] tBlock(){
   vertical3.setHeight(20);
   vertical3.setX(140);//was 120
   vertical3.setY(30);  
-  vertical3.setStroke(Color.PURPLE);
+  vertical3.setStroke(Color.BLACK);
   vertical3.setFill(Color.PURPLE); 
   pieces[2] = vertical3;
 
@@ -318,7 +326,7 @@ public Rectangle[] tBlock(){
   vertical4.setHeight(20);
   vertical4.setX(100);//was 80
   vertical4.setY(30);  
-  vertical4.setStroke(Color.PURPLE);
+  vertical4.setStroke(Color.BLACK);
   vertical4.setFill(Color.PURPLE); 
   pieces[3] = vertical4;
   return pieces;
@@ -333,7 +341,7 @@ public Rectangle[] zBlock(){
   vertical1.setHeight(20);
   vertical1.setX(100);//was 80
   vertical1.setY(10);  
-  vertical1.setStroke(Color.RED);
+  vertical1.setStroke(Color.BLACK);
   vertical1.setFill(Color.RED); 
 
   pieces[0] = vertical1;
@@ -343,7 +351,7 @@ public Rectangle[] zBlock(){
   vertical2.setHeight(20);
   vertical2.setX(120);//was 100
   vertical2.setY(10);  
-  vertical2.setStroke(Color.RED);
+  vertical2.setStroke(Color.BLACK);
   vertical2.setFill(Color.RED);
   
   pieces[1] = vertical2;
@@ -353,7 +361,7 @@ public Rectangle[] zBlock(){
   vertical3.setHeight(20);
   vertical3.setX(120);//was 100
   vertical3.setY(30);  
-  vertical3.setStroke(Color.RED);
+  vertical3.setStroke(Color.BLACK);
   vertical3.setFill(Color.RED); 
   pieces[2] = vertical3;
 
@@ -364,7 +372,7 @@ public Rectangle[] zBlock(){
   vertical4.setHeight(20);
   vertical4.setX(140);//was 120
   vertical4.setY(30);  
-  vertical4.setStroke(Color.RED);
+  vertical4.setStroke(Color.BLACK);
   vertical4.setFill(Color.RED); 
   pieces[3] = vertical4;
   return pieces;
@@ -388,7 +396,9 @@ public Rectangle[] zBlock(){
     }else{
       r = tBlock();
     }
-
+    for(Rectangle rect : r){
+      rect.setStroke(Color.BLACK);
+    }
     return r;
   }
 
