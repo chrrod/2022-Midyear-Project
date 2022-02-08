@@ -59,4 +59,7 @@ public class BallPane extends Pane {
         circle.setCenterX(x);
         circle.setCenterY(y);
     }
+
+    
+
 }

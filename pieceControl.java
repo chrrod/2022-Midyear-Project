@@ -71,4 +71,8 @@ public class pieceControl extends Application {
         // Must request focus after the primary stage is displayed
         piecePane.requestFocus();
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
