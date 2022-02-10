@@ -16,7 +16,8 @@ public class Controls {
         XBounds = ((XMAX - Size) - Move);
         if(form.a.getX() <= XBounds && form.b.getX() <= XBounds && 
             form.c.getX() <= XBounds && form.d.getX() <= XBounds){
-                int movea = MESH[form.a.getX(0)][];
+                int movea = MESH[form.a.getX(0)][form.b.get];
+                int moveb = MESH[form.b.getX()]
         }
     }
     public static void MoveLeft(Form form){
