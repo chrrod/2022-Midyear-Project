@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 
 public class BounceBallControl extends Application {
     public void start(Stage primaryStage){
+        
         BallPane ballPane = new BallPane();
         // Pause and resume animation
         ballPane.setOnMousePressed(e -> ballPane.pause());
@@ -26,4 +27,9 @@ public class BounceBallControl extends Application {
         // Must request focus after the primary stage is displayed
         ballPane.requestFocus();
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    
+      }
 }

@@ -58,7 +58,7 @@ public class PiecePane extends Pane {
         speed = animation.getRate()*5;//was *1
         animation.setRate(speed);
         System.out.println(speed);
-        Text t = new Text (83, 68, "A-TYPE");
+        Text t = new Text (70, 68, "A-TYPE");//was 83
         t.setFill(Color.WHITE);
         t.setStyle("-fx-font: 35 arial;");
         getChildren().add(t);
@@ -66,23 +66,23 @@ public class PiecePane extends Pane {
         l.setFill(Color.WHITE);
         l.setStyle("-fx-font: 40 arial;");
         getChildren().add(l);
-        Text s = new Text (59, 163, "STATISTICS");
+        Text s = new Text (48, 163, "STATISTICS");//was 59
         s.setFill(Color.WHITE);
         s.setStyle("-fx-font: 30 arial;");
         getChildren().add(s);
-        Text top = new Text (510, 68, "TOP");
+        Text top = new Text (520, 68, "TOP");//was 510
         top.setFill(Color.WHITE);
         top.setStyle("-fx-font: 30 arial;");
         getChildren().add(top);
-        Text score = new Text (510, 130, "SCORE");
+        Text score = new Text (520, 130, "SCORE");//was 510
         score.setFill(Color.WHITE);
         score.setStyle("-fx-font: 30 arial;");
         getChildren().add(score);
-        Text n = new Text (505, 250, "NEXT");
+        Text n = new Text (517, 250, "NEXT");//was 505
         n.setFill(Color.WHITE);
         n.setStyle("-fx-font: 30 arial;");
         getChildren().add(n);
-        Text level = new Text (505, 385, "LEVEL");
+        Text level = new Text (515, 385, "LEVEL");//was 505
         level.setFill(Color.WHITE);
         level.setStyle("-fx-font: 30 arial;");
         getChildren().add(level);
@@ -150,12 +150,6 @@ public class PiecePane extends Pane {
         double heightDifference = 100000;
         int pl = 0;
         for(int i = 0; i<4; i++){
-            // if(rArray.get(rArray.size()-1)[i].getY()<heightDifference){
-            //     heightDifference = rArray.get(rArray.size()-1)[i].getY();
-            //     if(rArray.get(rArray.size()-1)[i].getY()<rArray.get(rArray.size()-1)[pl].getY()){
-            //         pl = i;
-            //     }
-            // }
             if(heightDifference>getHeight()-rArray.get(rArray.size()-1)[i].getY()){
                 heightDifference = getHeight()-rArray.get(rArray.size()-1)[i].getY();
             }
@@ -231,7 +225,19 @@ public class PiecePane extends Pane {
         boolean needToCheck = true;
         for(Rectangle r : rArray.get(rArray.size()-1)){
             if(r.getY()>=getHeight()-46&&needToCheck){//changed -20 to -21//changed from -21 to -46
-                space();//end();
+                //space();//end();
+                double heightDifference = 100000;
+                int pl = 0;
+                for(int i = 0; i<4; i++){
+                    if(heightDifference>getHeight()-rArray.get(rArray.size()-1)[i].getY()){
+                        heightDifference = getHeight()-rArray.get(rArray.size()-1)[i].getY();
+                    }
+                }
+                heightDifference-=25;
+                for(Rectangle q : rArray.get(rArray.size()-1)){
+                    q.setY(q.getY()+heightDifference-20);//was -20
+                }
+                end();
                 needToCheck = false;
             }
             // r.setX(r.getX() + dx);
@@ -244,25 +250,6 @@ public class PiecePane extends Pane {
             }
         }
 
-        // if (y > getHeight() - 25) {
-        // //dy *= 0; // Change ball move direction
-        // end();
-        // }
-        // Adjust ball position
-        // x += dx;
-        // y += dy;
-        // if (x < -0 || x > getWidth() - 50) {
-        // x -=dx; // Change ball move direction
-        // }
-
-        // for(Rectangle r : rArray){// checks to see if trying to move into another
-        // object
-        // if (r.getX()>=x-49&&r.getX()<=x+49&&r!=rArray.get(rArray.size()-1)) {
-        // if (r.getY()>=y-49&&r.getY()<=y+49) {
-        // x -=dx; // Change ball move direction
-        // }
-        // }
-        // }
         boolean changePos = false;
         for(Rectangle[] r: rArray){
             if(!(r.equals(rArray.get(rArray.size()-1)))){
