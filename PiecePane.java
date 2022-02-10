@@ -294,9 +294,6 @@ public class PiecePane extends Pane {
         waitTime -= 1;
     }
 
-<<<<<<< HEAD
-
-=======
     public void rotation(){ 
         if(blocks.ifVertical == true){
             if(rotateCounter ==0){
@@ -417,6 +414,5 @@ public class PiecePane extends Pane {
             }
         }
     }
->>>>>>> ede63cb49b4a7d0dd8c913f38b2989cae02d1ea2
 
 }

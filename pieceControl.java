@@ -22,11 +22,15 @@ public class pieceControl extends Application {
     public void start(Stage primaryStage) {
         PiecePane piecePane = new PiecePane();
 
-        // Load the pause image
+        // Boss key from Solitare
+        // Load the pause game
         Image image = new Image("VsCode.png");
         ImageView imageView = new ImageView();
         imageView.setPreserveRatio(false);
+        //Dimensions for board is ====> Scene scene = new Scene(piecePane, 692, 510);
 
+
+        
         // Pause and resume animation
         piecePane.setOnMousePressed(e -> piecePane.pause());
         piecePane.setOnMouseReleased(e -> piecePane.play());
@@ -108,5 +112,5 @@ public class pieceControl extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
