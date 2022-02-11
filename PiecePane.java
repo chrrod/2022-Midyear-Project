@@ -36,12 +36,15 @@ public class PiecePane extends Pane {
     private Image spreadsheetImage;
     private ImageView imageView;
     int rotateCounter = 0;
+    Rectangle[] next = blocks.random();
+    private ArrayList<Rectangle[]> nexts = new ArrayList<>();
 
     public PiecePane() {
         spreadsheetImage = new Image("VsCode.png");
         imageView = new ImageView();
         imageView.setImage(spreadsheetImage);
         rArray = new ArrayList<>();
+        
         // r1.setFill(Color.GREEN); // Set ball color
         //// getChildren().add(r1); // Place a ball into this pane
 
@@ -78,14 +81,29 @@ public class PiecePane extends Pane {
         score.setFill(Color.WHITE);
         score.setStyle("-fx-font: 30 arial;");
         getChildren().add(score);
-        Text n = new Text (517, 250, "NEXT");//was 505
+
+        Text n = new Text (535, 250, "NEXT");//was 505
         n.setFill(Color.WHITE);
-        n.setStyle("-fx-font: 30 arial;");
+        n.setStyle("-fx-font: 15 arial;");
         getChildren().add(n);
+        nexts.add(next);
+        for(Rectangle r : next){
+            if(!(r.equals(next[1]))){
+                r.setX(560+(next[1].getX()-r.getX()));
+                r.setY(280+(next[1].getY()-r.getY()));
+            }            
+        }
+
+        next[1].setX(560);//was 550
+        next[1].setY(280);
+        nexts.add(next);
+
+        //getChildren().addAll(nexts.get(nexts.size()-1));
         Text level = new Text (515, 385, "LEVEL");//was 505
         level.setFill(Color.WHITE);
         level.setStyle("-fx-font: 30 arial;");
         getChildren().add(level);
+        System.out.println(nexts.size());
     }
 
     public void play() {
@@ -196,11 +214,40 @@ public class PiecePane extends Pane {
         // getChildren().add(r1);
         //trying something new
 
-        rArray.add(blocks.random());
+        //rArray.add(blocks.random())
+        
+        Rectangle[] tempRect = new Rectangle[4];
+        for(int i = 0; i<4;i++){
+            tempRect[i] = new Rectangle();
+            tempRect[i].setWidth(20);
+            tempRect[i].setHeight(20);
+            tempRect[i].setX(next[i].getX());
+            tempRect[i].setY(next[i].getY());
+            tempRect[i].setFill(next[i].getFill());
+            tempRect[i].setStroke(Color.BLACK);
+        }
+
+        System.out.println(nexts.size());
+        if(nexts.size()>0){
+            getChildren().removeAll(nexts.get(nexts.size()-1)); 
+            nexts.remove(nexts.get(nexts.size()-1));
+        }
+        rArray.add(tempRect);
         pos++;
         getChildren().addAll(rArray.get(rArray.size() - 1));
+        Rectangle[] x = blocks.random();
+        nexts.add(x);
+        for(Rectangle r : nexts.get(nexts.size()-1)){
+            if(!(r.equals(nexts.get(nexts.size()-1)[1]))){
+                r.setX(560+(nexts.get(nexts.size()-1)[1].getX()-r.getX()));
+                r.setY(280+(nexts.get(nexts.size()-1)[1].getY()-r.getY()));
+            }            
+        }
+        nexts.get(nexts.size()-1)[1].setX(560);//was 565
+        nexts.get(nexts.size()-1)[1].setY(280);
+        next = nexts.get(nexts.size()-1);
+        getChildren().addAll(nexts.get(nexts.size()-1));
         firstPos();
-
         waitTime = 0;
     }
 
