@@ -27,17 +27,15 @@ public class pieceControl extends Application {
         Image image = new Image("VsCode.png");
         ImageView imageView = new ImageView();
         imageView.setPreserveRatio(false);
-        //Dimensions for board is ====> Scene scene = new Scene(piecePane, 692, 510);
+        // Dimensions for board is ====> Scene scene = new Scene(piecePane, 692, 510);
 
-
-        
         // Pause and resume animation
         piecePane.setOnMousePressed(e -> piecePane.pause());
         piecePane.setOnMouseReleased(e -> piecePane.play());
         // Increase and decrease animation
         piecePane.setOnKeyPressed(e -> {
             {
-                if(down){
+                if (down) {
                     piecePane.down();
                 }
                 // if (e.getCode() == KeyCode.UP) {
@@ -63,7 +61,7 @@ public class pieceControl extends Application {
                 if (e.getCode() == KeyCode.SPACE) {
                     piecePane.space();
                 }
-                if(e.getCode() == KeyCode.DOWN){
+                if (e.getCode() == KeyCode.DOWN) {
                     down = true;
                     piecePane.down();
                 }
@@ -82,11 +80,11 @@ public class pieceControl extends Application {
             }
 
         });
-        piecePane.setOnKeyReleased(e-> {
+        piecePane.setOnKeyReleased(e -> {
             {
 
             }
-            if(e.getCode() == KeyCode.DOWN){
+            if (e.getCode() == KeyCode.DOWN) {
                 down = false;
                 piecePane.reset();
             }
@@ -94,20 +92,19 @@ public class pieceControl extends Application {
 
         System.out.println(down);
         // Create a scene and place it in the stage
-        Scene scene = new Scene(piecePane, 692, 510);//was 250 by 500
+        Scene scene = new Scene(piecePane, 692, 510);// was 250 by 500
         primaryStage.setTitle("PieceMovement"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
         // Must request focus after the primary stage is displayed
         piecePane.requestFocus();
 
-        BackgroundImage myBI= new BackgroundImage(new Image("tetrisBoardBlank.png",692,510,false,true),//was 705
-        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-        BackgroundSize.DEFAULT);
-        //then you set to your node
+        BackgroundImage myBI = new BackgroundImage(new Image("tetrisBoardBlank.png", 692, 510, false, true), // was 705
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        // then you set to your node
         piecePane.setBackground(new Background(myBI));
     }
-
 
     public static void main(String[] args) {
         launch(args);
