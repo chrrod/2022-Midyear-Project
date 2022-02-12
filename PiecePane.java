@@ -328,6 +328,43 @@ public class PiecePane extends Pane {
         waitTime -= 1;
     }
 
+    public void rotate(){
+        boolean nor = false;
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            if(!(r.equals(rArray.get(rArray.size()-1)[1]))){
+                double xShift = rArray.get(rArray.size()-1)[1].getX()-r.getX();
+                double yShift = rArray.get(rArray.size()-1)[1].getY()-r.getY();
+                r.setY(rArray.get(rArray.size()-1)[1].getY()-xShift);
+                r.setX(rArray.get(rArray.size()-1)[1].getX()+yShift);
+                if(r.getX()>getWidth()/2+100|| r.getX()<getWidth()/2-80){
+                    nor = true;
+                }
+                if(r.getY()>getHeight()-46){
+                    nor = true;
+                }
+                for(Rectangle[] l : rArray){
+                    if(!(l.equals(rArray.get(rArray.size()-1)))){
+                        for(Rectangle t : l){
+                            if(r.getBoundsInParent().intersects(t.getBoundsInParent())){
+                                nor = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(nor){
+            for(Rectangle r : rArray.get(rArray.size()-1)){
+                if(!(r.equals(rArray.get(rArray.size()-1)[1]))){
+                    double xShift = rArray.get(rArray.size()-1)[1].getX()-r.getX();
+                    double yShift = rArray.get(rArray.size()-1)[1].getY()-r.getY();
+                    r.setY(rArray.get(rArray.size()-1)[1].getY()+xShift);
+                    r.setX(rArray.get(rArray.size()-1)[1].getX()-yShift);
+                }
+            }
+        }
+    }
+
     public void rotation(){ 
         if(blocks.ifVertical == true){
             if(rotateCounter ==0){
