@@ -36,6 +36,11 @@ public class PiecePane extends Pane {
     private Image spreadsheetImage;
     private ImageView imageView;
     int rotateCounter = 0;
+    int rotateCounterJ = 0;
+    int rotateCounterL  =0;
+    int rotateCounterS  =0;
+    int rotateCounterT  =0;
+    int rotateCounterZ  =0;
 
     public PiecePane() {
         spreadsheetImage = new Image("VsCode.png");
@@ -282,124 +287,241 @@ public class PiecePane extends Pane {
     }
 
     public void rotation(){ 
+        
         if(blocks.ifVertical == true){
-            if(rotateCounter ==0){
-                r1[0].setX(r1[0].getX()+(r1[2].getY()-r1[0].getY()));
-                //100 + (10-10)= 100; x=100
-                r1[1].setX(r1[0].getX()+(r1[2].getY()-r1[0].getY()));
-                r1[2].setX(r1[0].getX()+(r1[2].getY()-r1[0].getY()));
-                r1[3].setX(r1[0].getX()+(r1[2].getY()-r1[0].getY()));
-                r1[1].setY(r1[0].getY()+(20));
-                r1[2].setY(r1[1].getY()+(20));
-                r1[3].setY(r1[1].getY()+(20));
-                rotateCounter = 1;
-
-            }
-            else if(rotateCounter ==1){
-                r1[1].setX(r1[0].getX()+(20));
-                r1[2].setX(r1[1].getX()+(20));
-                r1[3].setX(r1[2].getX()+(20));
-                r1[1].setY(r1[0].getY());
-                r1[2].setY(r1[0].getY());
-                r1[3].setY(r1[0].getY());
-
-            }
-        }
-        else if(blocks.ifSquare == true){
-            
-        }
-        else if(blocks.iflBlock == true){
-            if(rotateCounter ==0){
-                r1[0].setX(r1[0].getX()+(r1[2].getY()-r1[0].getY()));
-                //120+(50-10)= 160
-                //r1[0].setX(r1[0].getX()+20);
-                //r1[1].setY(r1[0].getY()+10);
-                //r1[2].setX(r1[0].getX()+20);
-                //r1[3].setY(r1[0].getY()+10);
-                //rotateCounter = 1;
-            }
-            if(rotateCounter ==1){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 2;
-            }
-            if(rotateCounter ==2){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 3;
-            }
-            if(rotateCounter ==3){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 0;
-            }
-        }
-        else if(blocks.ifsBlock == true){
-            if(rotateCounter ==0){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
+                if(rotateCounter == 0){
+                int hold = 2;
+                int counter = -20;
+                int toCheck = 0;
+                for(Rectangle r : rArray.get(rArray.size()-1)){
+                    r.setX(rArray.get(rArray.size()-1)[hold].getX());
+                    r.setY(rArray.get(rArray.size()-1)[toCheck].getY() + (counter+=20));
+                    toCheck++;
+                }
                 rotateCounter = 1;
             }
-            if(rotateCounter ==1){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 2;
-            }
-            if(rotateCounter ==2){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 3;
-            }
-            if(rotateCounter ==3){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
+            else{
+                int hold = 0;
+                int counter = -20;
+                int toCheck = 0;
+                for(Rectangle r : rArray.get(rArray.size()-1)){
+                    r.setX(rArray.get(rArray.size()-1)[toCheck].getX() + (counter+=20));
+                    r.setY(rArray.get(rArray.size()-1)[hold].getY());
+                }
                 rotateCounter = 0;
             }
+
         }
         else if(blocks.ifoBlock == true){
-            if(rotateCounter ==0){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 1;
+            
+        }
+        else if(blocks.ifJBlock == true){
+            if(rotateCounterJ == 0){
+                
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY());
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()+20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY());
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX());
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rotateCounterJ = 1;
             }
-            if(rotateCounter ==1){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 2;
+            else if(rotateCounterJ ==1){
+
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[1].getX());
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[1].getX());
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[1].getX()+20);
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+                rotateCounterJ = 2;
             }
-            if(rotateCounter ==2){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 3;
+            else if(rotateCounterJ ==2){
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[1].getX()+20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY());
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY());
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+                rotateCounterJ = 3;
             }
-            if(rotateCounter ==3){
-                r1[0].setX(r1[0].getX()+20);
-                r1[1].setY(r1[0].getY()+10);
-                r1[2].setX(r1[0].getX()+20);
-                r1[3].setY(r1[0].getY()+10);
-                rotateCounter = 0;
+            else if(rotateCounterJ ==3){
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[1].getX()+20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[1].getX());
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()+40);
+                rotateCounterJ = 0;
             }
         }
+        else if(blocks.iflBlock == true){
+            if(rotateCounterL ==0){
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()+20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX());
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()-40);
+
+                rotateCounterL = 1;
+            }
+            if(rotateCounterL ==1){
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()-20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()-40);
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY());
+
+                rotateCounterL = 2;
+            }
+            if(rotateCounterL ==2){
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()-20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX());
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()+40);
+
+                rotateCounterL = 1;
+            }
+            if(rotateCounter ==3){
+                rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
+                rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+
+                rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()+20);
+                rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+
+                rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()+40);
+                rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY());
+
+                rotateCounterL = 0;
+            }
+            else if(blocks.ifsBlock == true){
+                if(rotateCounterS ==0){
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()+20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()+40);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY());
+    
+                    rotateCounterS = 1;
+                }
+                if(rotateCounterS ==1){
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()-20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()-40);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY());
+    
+                    rotateCounterS = 0;
+                }
+                
+            }
+
+            else if(blocks.ifTBlock == true){
+                if(rotateCounterT == 0){
+                    
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()-20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()+20);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rotateCounterT = 1;
+                }
+                else if(rotateCounterT ==1){
+    
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[1].getX()+20);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+                    rotateCounterT = 2;
+                }
+                else if(rotateCounterT ==2){
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[1].getX()+20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+                    rotateCounterT = 3;
+                }
+                else if(rotateCounterT ==3){
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[1].getX()+20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[1].getX()-20);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+                    rotateCounterT = 0;
+                }
+            }
+
+            else if(blocks.ifZBlock == true){
+                if(rotateCounterZ ==0){
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()-20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()-20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()-40);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY());
+    
+                    rotateCounterZ = 1;
+                }
+                if(rotateCounterZ ==1){
+                    rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
+                    rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[2].setX(rArray.get(rArray.size()-1)[2].getX()+20);
+                    rArray.get(rArray.size()-1)[2].setY(rArray.get(rArray.size()-1)[1].getY()+20);
+    
+                    rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX()+40);
+                    rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY());
+    
+                    rotateCounterZ = 0;
+                }
+                
+            }
+        }
+        
+           
+          
     }
 
 }
