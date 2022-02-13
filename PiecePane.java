@@ -61,7 +61,93 @@ public class PiecePane extends Pane {
         animation.play(); // Start animation
         speed = animation.getRate()*5;//was *1
         animation.setRate(speed);
-        System.out.println(speed);
+        // System.out.println(speed);
+        Rectangle[] tempV = blocks.vertical();
+        Rectangle[] tempT = blocks.tBlock();
+        Rectangle[] tempO = blocks.oBlock();
+        Rectangle[] tempS = blocks.sBlock();
+        Rectangle[] tempZ = blocks.zBlock();
+        Rectangle[] tempL = blocks.lBlock();
+        Rectangle[] tempJ = blocks.jBlock();
+
+        for(Rectangle r : tempT){
+            if(!(r.equals(tempT[1]))){
+                r.setX(100+(r.getX()-tempT[1].getX()));
+                r.setY(180+(r.getY()-tempT[1].getY()));
+            }
+        }
+        tempT[1].setX(100);
+        tempT[1].setY(180);
+
+        for(Rectangle r : tempJ){
+            if(!(r.equals(tempJ[1]))){
+                r.setX(100+(r.getX()-tempJ[1].getX()));
+                r.setY(225+(r.getY()-tempJ[1].getY()));
+            }
+        }
+        tempJ[1].setX(100);
+        tempJ[1].setY(225);
+
+        for(Rectangle r : tempZ){
+            if(!(r.equals(tempZ[1]))){
+                r.setX(100+(r.getX()-tempZ[1].getX()));
+                r.setY(270+(r.getY()-tempZ[1].getY()));
+            }
+        }
+        tempZ[1].setX(100);
+        tempZ[1].setY(270);
+
+        for(Rectangle r : tempO){
+            if(!(r.equals(tempO[1]))){
+                r.setX(100+(r.getX()-tempO[1].getX()));
+                r.setY(315+(r.getY()-tempO[1].getY()));
+            }
+        }
+        tempO[1].setX(100);
+        tempO[1].setY(315);
+
+        for(Rectangle r : tempS){
+            if(!(r.equals(tempS[1]))){
+                r.setX(100+(r.getX()-tempS[1].getX()));
+                r.setY(360+(r.getY()-tempS[1].getY()));
+            }
+        }
+        tempS[1].setX(100);
+        tempS[1].setY(360);
+
+        for(Rectangle r : tempL){
+            if(!(r.equals(tempL[1]))){
+                r.setX(100+(r.getX()-tempL[1].getX()));
+                r.setY(405+(r.getY()-tempL[1].getY()));
+            }
+        }
+        tempL[1].setX(100);
+        tempL[1].setY(405);
+
+        for(Rectangle r : tempV){
+            if(!(r.equals(tempV[1]))){
+                r.setX(100+(r.getX()-tempV[1].getX()));
+                r.setY(450+(r.getY()-tempV[1].getY()));
+            }
+        }
+        tempV[1].setX(100);
+        tempV[1].setY(450);
+
+        rotate(tempT);
+        rotate(tempT);
+        rotate(tempJ);
+        rotate(tempJ);
+        rotate(tempJ);
+        rotate(tempL);
+
+        getChildren().addAll(tempT);
+        getChildren().addAll(tempJ);
+        getChildren().addAll(tempZ);
+        getChildren().addAll(tempO);
+        getChildren().addAll(tempS);
+        getChildren().addAll(tempL);
+        getChildren().addAll(tempV);
+
         Text t = new Text (70, 68, "A-TYPE");//was 83
         t.setFill(Color.WHITE);
         t.setStyle("-fx-font: 35 arial;");
@@ -104,7 +190,7 @@ public class PiecePane extends Pane {
         level.setFill(Color.WHITE);
         level.setStyle("-fx-font: 30 arial;");
         getChildren().add(level);
-        System.out.println(nexts.size());
+        // System.out.println(nexts.size());
     }
 
     public void play() {
@@ -203,7 +289,11 @@ public class PiecePane extends Pane {
             r.setY(r.getY()+heightDifference-20);//was -20
         }
         for(Rectangle l : rArray.get(rArray.size()-1)){
-            l.setOpacity(1);
+            for(Rectangle r : rArray.get(rArray.size()-1)){
+                if(r.getY()>84){
+                    r.setOpacity(1);
+                }
+            }
         }
         end();
     }
@@ -225,13 +315,13 @@ public class PiecePane extends Pane {
         //rArray.add(blocks.random())
         if(rArray.size()>1){
             for(Rectangle r : rArray.get(rArray.size()-1)){
-                System.out.print(r.getY());
+                // System.out.print(r.getY());
                 if(r.getY()<getHeight()-46-400){
                     Text ended = new Text (getWidth()/2-50, getHeight()/2+20, "GameOver");
                     ended.setFill(Color.WHITE);
                     ended.setStyle("-fx-font: 35 arial;");
                     getChildren().add(ended);
-                    gamesOver();;
+                    gamesOver();
                 }
             }
         }
@@ -246,7 +336,7 @@ public class PiecePane extends Pane {
             tempRect[i].setStroke(Color.BLACK);
         }
 
-        System.out.println(nexts.size());
+        // System.out.println(nexts.size());
         if(nexts.size()>0){
             getChildren().removeAll(nexts.get(nexts.size()-1)); 
             nexts.remove(nexts.get(nexts.size()-1));
@@ -391,6 +481,43 @@ public class PiecePane extends Pane {
                 }
             }
         }
+    }
+
+    public void rotate(Rectangle[] rect){
+        // boolean nor = false;
+        for(Rectangle r : rect){
+            if(!(r.equals(rect[1]))){
+                double xShift = rect[1].getX()-r.getX();
+                double yShift = rect[1].getY()-r.getY();
+                r.setY(rect[1].getY()-xShift);
+                r.setX(rect[1].getX()+yShift);
+                // if(r.getX()>getWidth()/2+100|| r.getX()<getWidth()/2-80){
+                //     nor = true;
+                // }
+                // if(r.getY()>getHeight()-46){
+                //     nor = true;
+                // }
+                // for(Rectangle[] l : rArray){
+                //     if(!(l.equals(rArray.get(rArray.size()-1)))){
+                //         for(Rectangle t : l){
+                //             if(r.getBoundsInParent().intersects(t.getBoundsInParent())){
+                //                 nor = true;
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        }
+        // if(nor){
+        //     for(Rectangle r : rArray.get(rArray.size()-1)){
+        //         if(!(r.equals(rArray.get(rArray.size()-1)[1]))){
+        //             double xShift = rArray.get(rArray.size()-1)[1].getX()-r.getX();
+        //             double yShift = rArray.get(rArray.size()-1)[1].getY()-r.getY();
+        //             r.setY(rArray.get(rArray.size()-1)[1].getY()+xShift);
+        //             r.setX(rArray.get(rArray.size()-1)[1].getX()-yShift);
+        //         }
+        //     }
+        // }
     }
 
     public void rotation(){ 
