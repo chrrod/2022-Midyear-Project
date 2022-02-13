@@ -38,6 +38,7 @@ public class PiecePane extends Pane {
     int rotateCounter = 0;
     Rectangle[] next = blocks.random();
     private ArrayList<Rectangle[]> nexts = new ArrayList<>();
+    //private Color col = new Color();
 
     public PiecePane() {
         spreadsheetImage = new Image("VsCode.png");
@@ -114,6 +115,10 @@ public class PiecePane extends Pane {
     public void pause() {
         animation.pause();
         getChildren().add(imageView);
+    }
+
+    public void gamesOver() {
+        animation.pause();
     }
 
     public void down() {
@@ -197,6 +202,9 @@ public class PiecePane extends Pane {
         for(Rectangle r : rArray.get(rArray.size()-1)){
             r.setY(r.getY()+heightDifference-20);//was -20
         }
+        for(Rectangle l : rArray.get(rArray.size()-1)){
+            l.setOpacity(1);
+        }
         end();
     }
 
@@ -215,7 +223,18 @@ public class PiecePane extends Pane {
         //trying something new
 
         //rArray.add(blocks.random())
-        
+        if(rArray.size()>1){
+            for(Rectangle r : rArray.get(rArray.size()-1)){
+                System.out.print(r.getY());
+                if(r.getY()<getHeight()-46-400){
+                    Text ended = new Text (getWidth()/2-50, getHeight()/2+20, "GameOver");
+                    ended.setFill(Color.WHITE);
+                    ended.setStyle("-fx-font: 35 arial;");
+                    getChildren().add(ended);
+                    gamesOver();;
+                }
+            }
+        }
         Rectangle[] tempRect = new Rectangle[4];
         for(int i = 0; i<4;i++){
             tempRect[i] = new Rectangle();
@@ -249,23 +268,32 @@ public class PiecePane extends Pane {
         getChildren().addAll(nexts.get(nexts.size()-1));
         firstPos();
         waitTime = 0;
+        //col = rArray.get(rArray.size()-1)[0].getColor();
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            r.setOpacity(0);
+        }
     }
 
     public void firstPos() {
         for(Rectangle r : rArray.get(rArray.size()-1)){
             if(!(r.equals(rArray.get(rArray.size()-1)[0]))){
                 r.setX(getWidth()/2/*-20*/+(r.getX()-rArray.get(rArray.size()-1)[0].getX()));
-                r.setY(84+(r.getY()-rArray.get(rArray.size()-1)[0].getY()));
+                r.setY(34+(r.getY()-rArray.get(rArray.size()-1)[0].getY()));//was 84
             }
         }
         rArray.get(rArray.size()-1)[0].setX(getWidth()/2/*-20*/);
-        rArray.get(rArray.size()-1)[0].setY(84);//was 38
+        rArray.get(rArray.size()-1)[0].setY(34);//was 38//was 84
     }
 
     protected void move() {
         if(firstMove){
             firstPos();
             firstMove = false;
+        }
+        for(Rectangle r : rArray.get(rArray.size()-1)){
+            if(r.getY()>84){
+                r.setOpacity(1);
+            }
         }
         checkBounds(rArray.get(rArray.size() - 1));
         // Check boundaries
