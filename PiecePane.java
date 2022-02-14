@@ -35,12 +35,19 @@ public class PiecePane extends Pane {
     Group root = new Group();// try ignoring for now
     private Image spreadsheetImage;
     private ImageView imageView;
-    int rotateCounter = 0;
-    int rotateCounterJ = 0;
-    int rotateCounterL  =0;
-    int rotateCounterS  =0;
-    int rotateCounterT  =0;
-    int rotateCounterZ  =0;
+    public int rotateCounter = 0;
+    public int rotateCounterJ = 0;
+    public int rotateCounterL  =0;
+    public int rotateCounterS  =0;
+    public int rotateCounterT  =0;
+    public int rotateCounterZ  =0;
+    boolean ifVertical = blocks.ifVertical;
+    boolean iflBlock = blocks.iflBlock;
+    boolean ifoBlock = blocks.ifoBlock;
+    boolean ifTBlock = blocks.ifTBlock;
+    boolean ifZBlock = blocks.ifZBlock;
+    boolean ifsBlock = blocks.ifsBlock;
+    boolean ifJBlock = blocks.ifJBlock;
     Rectangle[] next = blocks.random();
     private ArrayList<Rectangle[]> nexts = new ArrayList<>();
     //private Color col = new Color();
@@ -310,6 +317,13 @@ public class PiecePane extends Pane {
     }
 
     public void end() {
+         ifVertical = blocks.ifVertical;
+         iflBlock = blocks.iflBlock;
+         ifoBlock = blocks.ifoBlock;
+         ifTBlock = blocks.ifTBlock;
+         ifZBlock = blocks.ifZBlock;
+         ifsBlock = blocks.ifsBlock;
+         ifJBlock = blocks.ifJBlock;
         dx = 0;
         // dy = 0;
         // Rectangle copy = new Rectangle(25, 25, 50, 50);
@@ -527,7 +541,7 @@ public class PiecePane extends Pane {
 
     public void rotation(){ 
         
-        if(blocks.ifVertical == true){
+        if(ifVertical == true){
                 if(rotateCounter == 0){
                 int hold = 2;
                 int counter = -20;
@@ -551,10 +565,10 @@ public class PiecePane extends Pane {
             }
 
         }
-        else if(blocks.ifoBlock == true){
+        else if(ifoBlock == true){
             
         }
-        else if(blocks.ifJBlock == true){
+        else if(ifJBlock == true){
             if(rotateCounterJ == 0){
                 
                 rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
@@ -603,7 +617,7 @@ public class PiecePane extends Pane {
                 rotateCounterJ = 0;
             }
         }
-        else if(blocks.iflBlock == true){
+        else if(iflBlock == true){
             if(rotateCounterL ==0){
                 rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
                 rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()+20);
@@ -638,7 +652,7 @@ public class PiecePane extends Pane {
                 rArray.get(rArray.size()-1)[3].setX(rArray.get(rArray.size()-1)[2].getX());
                 rArray.get(rArray.size()-1)[3].setY(rArray.get(rArray.size()-1)[1].getY()+40);
 
-                rotateCounterL = 1;
+                rotateCounterL = 3;
             }
             if(rotateCounter ==3){
                 rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
@@ -652,7 +666,7 @@ public class PiecePane extends Pane {
 
                 rotateCounterL = 0;
             }
-            else if(blocks.ifsBlock == true){
+            else if(ifsBlock == true){
                 if(rotateCounterS ==0){
                     rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()-20);
                     rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
@@ -680,7 +694,7 @@ public class PiecePane extends Pane {
                 
             }
 
-            else if(blocks.ifTBlock == true){
+            else if(ifTBlock == true){
                 if(rotateCounterT == 0){
                     
                     rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
@@ -730,7 +744,7 @@ public class PiecePane extends Pane {
                 }
             }
 
-            else if(blocks.ifZBlock == true){
+            else if(ifZBlock == true){
                 if(rotateCounterZ ==0){
                     rArray.get(rArray.size()-1)[0].setX(rArray.get(rArray.size()-1)[0].getX()+20);
                     rArray.get(rArray.size()-1)[0].setY(rArray.get(rArray.size()-1)[1].getY()-20);
