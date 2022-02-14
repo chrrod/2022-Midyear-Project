@@ -24,6 +24,13 @@ public class mainCheck extends Application {
   boolean ifZBlock = false;
   boolean ifsBlock = false;
   boolean ifJBlock = false;
+  public int numV = 0;
+  public int numL = 0;
+  public int numO = 0;
+  public int numT = 0;
+  public int numZ = 0;
+  public int numS = 0;
+  public int numJ = 0;
 
   // @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
@@ -441,18 +448,25 @@ public class mainCheck extends Application {
     int rn = rand.nextInt(7);
     if (rn == 0) {
       r = lBlock();
+      numL++;
     } else if (rn == 1) {
       r = jBlock();
+      numJ++;
     } else if (rn == 2) {
       r = oBlock();
+      numO++;
     } else if (rn == 3) {
       r = vertical();
+      numV++;
     } else if (rn == 4) {
       r = zBlock();
+      numZ++;
     } else if (rn == 5) {
       r = sBlock();
+      numS++;
     } else {
       r = tBlock();
+      numT++;
     }
     for (Rectangle rect : r) {
       rect.setStroke(Color.BLACK);

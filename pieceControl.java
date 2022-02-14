@@ -35,9 +35,12 @@ public class pieceControl extends Application {
         // Increase and decrease animation
         piecePane.setOnKeyPressed(e -> {
             {
-                if (down) {
-                    piecePane.down();
+                if(!piecePane.gameDone){
+                    if (down) {
+                        piecePane.down();
+                    }
                 }
+                
                 // if (e.getCode() == KeyCode.UP) {
                 // piecePane.increaseSpeed();
                 // }
@@ -51,23 +54,26 @@ public class pieceControl extends Application {
                 // }
             }
             if (!isPaused) {
-                if (e.getCode() == KeyCode.RIGHT) {
-                    piecePane.right();
-                }
-                if (e.getCode() == KeyCode.LEFT) {
-                    piecePane.left();
-                }
-                if (e.getCode() == KeyCode.UP) {
-                    piecePane.rotation();
-                }
+                if(!piecePane.gameDone){
+                    if (e.getCode() == KeyCode.RIGHT) {
+                        piecePane.right();
+                    }
+                    if (e.getCode() == KeyCode.LEFT) {
+                        piecePane.left();
+                    }
+                    if (e.getCode() == KeyCode.UP) {
+                        piecePane.rotate();
+                    }
 
-                if (e.getCode() == KeyCode.SPACE) {
-                    piecePane.space();
+                    if (e.getCode() == KeyCode.SPACE) {
+                        piecePane.space();
+                    }
+                    if (e.getCode() == KeyCode.DOWN) {
+                        down = true;
+                        piecePane.down();
+                    }    
                 }
-                if (e.getCode() == KeyCode.DOWN) {
-                    down = true;
-                    piecePane.down();
-                }
+                
             }
 
             if (e.getCode() == KeyCode.ESCAPE) {
@@ -87,10 +93,13 @@ public class pieceControl extends Application {
             {
 
             }
-            if (e.getCode() == KeyCode.DOWN) {
-                down = false;
-                piecePane.reset();
+            if(!piecePane.gameDone){
+                if (e.getCode() == KeyCode.DOWN) {
+                    down = false;
+                    piecePane.reset();
+                }    
             }
+            
         });
 
         System.out.println(down);

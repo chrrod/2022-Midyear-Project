@@ -17,6 +17,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import javafx.scene.text.Text;
+//import javax.swing.text.html.AccessibleHTML.TextElementInfo.TextAccessibleContext;
+
 import javafx.scene.shape.*;
 
 public class PiecePane extends Pane {
@@ -49,7 +52,16 @@ public class PiecePane extends Pane {
     boolean ifsBlock = blocks.ifsBlock;
     boolean ifJBlock = blocks.ifJBlock;
     Rectangle[] next = blocks.random();
+    Text numV;
+    Text numL;
+    Text numO;
+    Text numT;
+    Text numZ;
+    Text numS;
+    Text numJ;
+
     private ArrayList<Rectangle[]> nexts = new ArrayList<>();
+    public boolean gameDone = false;
     //private Color col = new Color();
 
     public PiecePane() {
@@ -60,7 +72,40 @@ public class PiecePane extends Pane {
         
         // r1.setFill(Color.GREEN); // Set ball color
         //// getChildren().add(r1); // Place a ball into this pane
+        numV = new Text (180, 470, Integer.toString(blocks.numV));//was 510
+        numV.setFill(Color.WHITE);
+        numV.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numV);
 
+        numT = new Text (180, 200, Integer.toString(blocks.numT));//was 510
+        numT.setFill(Color.WHITE);
+        numT.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numT);
+
+        numO = new Text (180, 335, Integer.toString(blocks.numO));//was 510
+        numO.setFill(Color.WHITE);
+        numO.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numO);
+
+        numS = new Text (180, 380, Integer.toString(blocks.numS));//was 510
+        numS.setFill(Color.WHITE);
+        numS.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numS);
+
+        numZ = new Text (180, 290, Integer.toString(blocks.numZ));//was 510
+        numZ.setFill(Color.WHITE);
+        numZ.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numZ);
+
+        numL = new Text (180, 425, Integer.toString(blocks.numL));//was 510
+        numL.setFill(Color.WHITE);
+        numL.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numL);
+
+        numJ = new Text (180, 245, Integer.toString(blocks.numJ));//was 510
+        numJ.setFill(Color.WHITE);
+        numJ.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numJ);
         // r1 = blocks.random();
         // rArray.add(r1);
         // getChildren().addAll(rArray.get(rArray.size() - 1));
@@ -90,6 +135,7 @@ public class PiecePane extends Pane {
         }
         tempT[1].setX(100);
         tempT[1].setY(180);
+
 
         for(Rectangle r : tempJ){
             if(!(r.equals(tempJ[1]))){
@@ -207,6 +253,9 @@ public class PiecePane extends Pane {
 
     public void play() {
         animation.play();
+        if(gameDone){
+            gamesOver();
+        }
         getChildren().remove(imageView);
     }
 
@@ -217,6 +266,7 @@ public class PiecePane extends Pane {
 
     public void gamesOver() {
         animation.pause();
+        gameDone = true;
     }
 
     public void down() {
@@ -325,6 +375,61 @@ public class PiecePane extends Pane {
          ifsBlock = blocks.ifsBlock;
          ifJBlock = blocks.ifJBlock;
         dx = 0;
+        numV.setOpacity(0);
+        getChildren().remove(numV);
+        numV = new Text (180, 470, Integer.toString(blocks.numV));//was 510
+        numV.setFill(Color.WHITE);
+        numV.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numV);
+        numV.setOpacity(1);
+
+        numT.setOpacity(0);
+        getChildren().remove(numT);
+        numT = new Text (180, 200, Integer.toString(blocks.numT));//was 510
+        numT.setFill(Color.WHITE);
+        numT.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numT);
+        numT.setOpacity(1);
+
+        numO.setOpacity(0);
+        getChildren().remove(numO);
+        numO = new Text (180, 335, Integer.toString(blocks.numO));//was 510
+        numO.setFill(Color.WHITE);
+        numO.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numO);
+        numO.setOpacity(1);
+
+        numS.setOpacity(0);
+        getChildren().remove(numS);
+        numS = new Text (180, 380, Integer.toString(blocks.numS));//was 510
+        numS.setFill(Color.WHITE);
+        numS.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numS);
+        numS.setOpacity(1);
+
+        numZ.setOpacity(0);
+        getChildren().remove(numZ);
+        numZ = new Text (180, 290, Integer.toString(blocks.numZ));//was 510
+        numZ.setFill(Color.WHITE);
+        numZ.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numZ);
+        numZ.setOpacity(1);
+
+        numL.setOpacity(0);
+        getChildren().remove(numL);
+        numL = new Text (180, 425, Integer.toString(blocks.numL));//was 510
+        numL.setFill(Color.WHITE);
+        numL.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numL);
+        numL.setOpacity(1);
+
+        numJ.setOpacity(0);
+        getChildren().remove(numJ);
+        numJ = new Text (180, 245, Integer.toString(blocks.numJ));//was 510
+        numJ.setFill(Color.WHITE);
+        numJ.setStyle("-fx-font: 15 arial;");
+        getChildren().add(numJ);
+        numJ.setOpacity(1);
         // dy = 0;
         // Rectangle copy = new Rectangle(25, 25, 50, 50);
         // copy.setFill(Color.GREEN); // Set ball color
@@ -490,7 +595,7 @@ public class PiecePane extends Pane {
                 }
             }
         }
-        if(nor){
+        if(nor || ifoBlock){
             for(Rectangle r : rArray.get(rArray.size()-1)){
                 if(!(r.equals(rArray.get(rArray.size()-1)[1]))){
                     double xShift = rArray.get(rArray.size()-1)[1].getX()-r.getX();
