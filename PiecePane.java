@@ -52,6 +52,7 @@ public class PiecePane extends Pane {
     boolean ifsBlock = blocks.ifsBlock;
     boolean ifJBlock = blocks.ifJBlock;
     Rectangle[] next = blocks.random();
+    Rectangle checker = new Rectangle(0, 0, 20, 20);
     Text numV;
     Text numL;
     Text numO;
@@ -59,6 +60,8 @@ public class PiecePane extends Pane {
     Text numZ;
     Text numS;
     Text numJ;
+    public int score = 0;
+    Text scoreText;
 
     private ArrayList<Rectangle[]> nexts = new ArrayList<>();
     public boolean gameDone = false;
@@ -72,6 +75,12 @@ public class PiecePane extends Pane {
         
         // r1.setFill(Color.GREEN); // Set ball color
         //// getChildren().add(r1); // Place a ball into this pane
+
+        scoreText = new Text(520, 160, "0");
+        scoreText.setFill(Color.WHITE);
+        scoreText.setStyle("-fx-font: 15 arial;");
+        getChildren().add(scoreText);
+
         numV = new Text (180, 470, Integer.toString(blocks.numV));//was 510
         numV.setFill(Color.WHITE);
         numV.setStyle("-fx-font: 15 arial;");
@@ -357,7 +366,11 @@ public class PiecePane extends Pane {
                 }
             }
         }
+        // for(Rectangle r: rArray.get(rArray.size()-1)){
+        //     System.out.println(r.getX());    
+        // }
         end();
+        lineClear();         
     }
 
     
@@ -486,6 +499,7 @@ public class PiecePane extends Pane {
         for(Rectangle r : rArray.get(rArray.size()-1)){
             r.setOpacity(0);
         }
+        lineClear();
     }
 
     public void firstPos() {
@@ -568,6 +582,7 @@ public class PiecePane extends Pane {
         // rArray.get(rArray.size()-1).setX(x);
         // rArray.get(rArray.size()-1).setY(y);
         waitTime -= 1;
+        //lineClear();        
     }
 
     public void rotate(){
@@ -642,6 +657,49 @@ public class PiecePane extends Pane {
         //         }
         //     }
         // }
+    }
+
+    public void lineClear(){
+        checker.setOpacity(0);
+        checker.setHeight(20);
+        checker.setWidth(20);
+        for(double i = 465.0; i>=465-(20*20);i-=20){
+            int count = 0;
+            checker.setY(i);
+            for(double j = 266.0; j<266+(20*10);j+=20){
+                checker.setX(j);
+                for(Rectangle[] rect : rArray){
+                    for(Rectangle r : rect){
+                        if(r.getX()==checker.getX()&&r.getY()==checker.getY()){
+                            count++;
+                        }
+                    }
+                }
+            }
+            if(count==10){
+                score+=10;
+                scoreText.setOpacity(0);
+                getChildren().remove(scoreText);
+                scoreText = new Text(520, 160, Integer.toString(score));
+                scoreText.setFill(Color.WHITE);
+                scoreText.setStyle("-fx-font: 15 arial;");
+                getChildren().add(scoreText);
+                scoreText.setOpacity(1);
+                for(Rectangle[] rect: rArray){
+                    for(Rectangle r: rect){
+                        if(r.getY()==i){
+                            r.setX(500);
+                            r.setY(500);
+                            r.setOpacity(0);
+                            getChildren().remove(r);
+                        }else if(r.getY()<i){
+                            r.setY(r.getY()+20);
+                        }
+                    }
+                }
+                i+=20;
+            }
+        }
     }
 
     public void rotation(){ 
