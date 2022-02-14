@@ -9,11 +9,14 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class mainCheck extends Application {
-  boolean ifVertical = false;
-  boolean ifSquare = false;
-  boolean iflBlock = false;
-  boolean ifoBlock = false;
-  boolean ifsBlock = false;
+  public boolean ifVertical = false;
+  public boolean ifSquare = false;
+  public boolean iflBlock = false;
+  public boolean ifoBlock = false;
+  public boolean ifsBlock = false;
+  public boolean ifzBlock = false;
+  public boolean ifjBlock = false;
+  public boolean iftBlock = false;
 
   // @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
