@@ -60,6 +60,8 @@ public class PiecePane extends Pane {
     Text numZ;
     Text numS;
     Text numJ;
+    public int linesDone = 0;
+    public Text linesText;
     public int score = 0;
     Text scoreText;
 
@@ -80,6 +82,11 @@ public class PiecePane extends Pane {
         scoreText.setFill(Color.WHITE);
         scoreText.setStyle("-fx-font: 15 arial;");
         getChildren().add(scoreText);
+
+        linesText = new Text(445, 50, "0");
+        linesText.setFill(Color.WHITE);
+        linesText.setStyle("-fx-font: 15 arial;");
+        getChildren().add(linesText);
 
         numV = new Text (180, 470, Integer.toString(blocks.numV));//was 510
         numV.setFill(Color.WHITE);
@@ -663,6 +670,7 @@ public class PiecePane extends Pane {
         checker.setOpacity(0);
         checker.setHeight(20);
         checker.setWidth(20);
+        int linesCleared = 0;
         for(double i = 465.0; i>=465-(20*20);i-=20){
             int count = 0;
             checker.setY(i);
@@ -677,14 +685,14 @@ public class PiecePane extends Pane {
                 }
             }
             if(count==10){
-                score+=10;
-                scoreText.setOpacity(0);
-                getChildren().remove(scoreText);
-                scoreText = new Text(520, 160, Integer.toString(score));
-                scoreText.setFill(Color.WHITE);
-                scoreText.setStyle("-fx-font: 15 arial;");
-                getChildren().add(scoreText);
-                scoreText.setOpacity(1);
+                score+=100;
+                // scoreText.setOpacity(0);
+                // getChildren().remove(scoreText);
+                // scoreText = new Text(520, 160, Integer.toString(score));
+                // scoreText.setFill(Color.WHITE);
+                // scoreText.setStyle("-fx-font: 15 arial;");
+                // getChildren().add(scoreText);
+                // scoreText.setOpacity(1);
                 for(Rectangle[] rect: rArray){
                     for(Rectangle r: rect){
                         if(r.getY()==i){
@@ -697,9 +705,35 @@ public class PiecePane extends Pane {
                         }
                     }
                 }
+                linesCleared++;
                 i+=20;
             }
         }
+        if(linesCleared == 2){
+            score+=300;
+        }else if(linesCleared == 3){
+            score+=900;
+        }else if(linesCleared == 4){
+            score+=1200;
+        }
+
+        linesDone+=linesCleared;
+
+        scoreText.setOpacity(0);
+        getChildren().remove(scoreText);
+        scoreText = new Text(520, 160, Integer.toString(score));
+        scoreText.setFill(Color.WHITE);
+        scoreText.setStyle("-fx-font: 15 arial;");
+        getChildren().add(scoreText);
+        scoreText.setOpacity(1);
+
+        linesText.setOpacity(0);
+        getChildren().remove(linesText);
+        linesText = new Text(445, 50, Integer.toString(linesDone));
+        linesText.setFill(Color.WHITE);
+        linesText.setStyle("-fx-font: 15 arial;");
+        getChildren().add(linesText);
+        linesText.setOpacity(1);
     }
 
     public void rotation(){ 
