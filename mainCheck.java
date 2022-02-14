@@ -9,6 +9,14 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class mainCheck extends Application {
+  // public boolean ifVertical = false;
+  // public boolean ifSquare = false;
+  // public boolean iflBlock = false;
+  // public boolean ifoBlock = false;
+  // public boolean ifsBlock = false;
+  // public boolean ifzBlock = false;
+  // public boolean ifjBlock = false;
+  // public boolean iftBlock = false;
   boolean ifVertical = false;
   boolean iflBlock = false;
   boolean ifoBlock = false;
