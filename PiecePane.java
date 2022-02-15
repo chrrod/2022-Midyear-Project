@@ -285,6 +285,7 @@ public class PiecePane extends Pane {
     public void pause() {
         animation.pause();
         getChildren().add(imageView);
+        mediaPlayer.pause();
     }
 
     public void gamesOver() {
