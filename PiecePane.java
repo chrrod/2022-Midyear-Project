@@ -17,8 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
+// import java.util.Timer;
+// import java.util.TimerTask;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -92,37 +92,42 @@ public class PiecePane extends Pane {
         imageView.setImage(spreadsheetImage);
         rArray = new ArrayList<>();
         
+        scoreText = new Text(520, 160, Integer.toString(score));
+        scoreText.setFill(Color.WHITE);
+        scoreText.setStyle("-fx-font: 15 arial;");
+        getChildren().add(scoreText);
+
         // r1.setFill(Color.GREEN); // Set ball color
         //// getChildren().add(r1); // Place a ball into this pane
 
 
-        String time = "";
-        int seconds = 0;
-        int minutes = 0;
-        int hours = 0;
+        // String time = "";
+        // int seconds = 0;
+        // int minutes = 0;
+        // int hours = 0;
 
-        Text timerText = new Text(520, 160, Integer.toString(minutes) + ":" +Integer.toString(seconds));
-        timerText.setFill(Color.WHITE);
-        timerText.setStyle("-fx-font: 15 arial;");
-        getChildren().add(timerText);
+        // Text timerText = new Text(520, 160, Integer.toString(minutes) + ":" +Integer.toString(seconds));
+        // timerText.setFill(Color.WHITE);
+        // timerText.setStyle("-fx-font: 15 arial;");
+        // getChildren().add(timerText);
 
-        while(gameDone != true){
-            seconds ++;
-            if (seconds >= 60){
-                minutes++;
-                seconds =0;
-            }
-            if (minutes >= 60){
-                hours++;
-                minutes = 0;
-            }
-        }
+        // while(gameDone != true){
+        //     seconds ++;
+        //     if (seconds >= 60){
+        //         minutes++;
+        //         seconds =0;
+        //     }
+        //     if (minutes >= 60){
+        //         hours++;
+        //         minutes = 0;
+        //     }
+        // }
 
-        if (gameDone){
-            time = "";
-            seconds = 0;
-            minutes = 0;
-            hours = 0;        }
+        // if (gameDone){
+        //     time = "";
+        //     seconds = 0;
+        //     minutes = 0;
+        //     hours = 0;        }
 
     
 
