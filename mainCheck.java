@@ -9,11 +9,28 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class mainCheck extends Application {
+  // public boolean ifVertical = false;
+  // public boolean ifSquare = false;
+  // public boolean iflBlock = false;
+  // public boolean ifoBlock = false;
+  // public boolean ifsBlock = false;
+  // public boolean ifzBlock = false;
+  // public boolean ifjBlock = false;
+  // public boolean iftBlock = false;
   boolean ifVertical = false;
-  boolean ifSquare = false;
   boolean iflBlock = false;
   boolean ifoBlock = false;
+  boolean ifTBlock = false;
+  boolean ifZBlock = false;
   boolean ifsBlock = false;
+  boolean ifJBlock = false;
+  public int numV = 0;
+  public int numL = 0;
+  public int numO = 0;
+  public int numT = 0;
+  public int numZ = 0;
+  public int numS = 0;
+  public int numJ = 0;
 
   // @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
@@ -21,7 +38,7 @@ public class mainCheck extends Application {
     Rectangle r1 = new Rectangle(25, 10, 300, 600);
     r1.setStroke(Color.BLACK);
     r1.setFill(Color.BLACK);
-    Rectangle[] new1 = lBlock();
+    Rectangle[] new1 = vertical();
 
     // Rectangle r2 = new Rectangle(25, 50, 60, 30);
     // Rectangle r3 = new Rectangle(25, 90, 60, 30);
@@ -33,7 +50,7 @@ public class mainCheck extends Application {
     // Setting the properties of the rectangle
 
     Group group = new Group();
-    group.getChildren().addAll(new Text(10, 27, ""), r1, new Text(10, 67, "r2"), new1[0], new1[1], new1[2], new1[3]/*
+    group.getChildren().addAll(new Text(10, 27, ""), r1, new Text(10, 67, "r2"), new1[0], new1[1], new1[2], new1[3]);/*
                                                                                                                     * ,
                                                                                                                     * new
                                                                                                                     * Text
@@ -51,7 +68,7 @@ public class mainCheck extends Application {
                                                                                                                     * "r3"
                                                                                                                     * ),
                                                                                                                     * r3
-                                                                                                                    */);
+                                                                                                                    */
 
     // for (int i = 0; i < 4; i++){
     // Rectangle r = new Rectangle(100, 50, 100, 30);
@@ -109,6 +126,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.AQUA);
     pieces[3] = vertical4;
+   ifVertical = true;
+   iflBlock = false;
+   ifoBlock = false;
+   ifTBlock = false;
+   ifZBlock = false;
+   ifsBlock = false;
+   ifJBlock = false;
     return pieces;
   }
 
@@ -153,6 +177,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.YELLOW);
     pieces[3] = vertical4;
+     ifVertical = false;
+     iflBlock = false;
+     ifoBlock = true;
+     ifTBlock = false;
+     ifZBlock = false;
+     ifsBlock = false;
+     ifJBlock = false;
     return pieces;
   }
 
@@ -197,6 +228,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.BLUE);
     pieces[3] = vertical4;
+     ifVertical = false;
+     iflBlock = false;
+     ifoBlock = false;
+     ifTBlock = false;
+     ifZBlock = false;
+     ifsBlock = false;
+     ifJBlock = true;
     return pieces;
   }
 
@@ -241,6 +279,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.ORANGE);
     pieces[3] = vertical4;
+     ifVertical = false;
+   iflBlock = true;
+   ifoBlock = false;
+   ifTBlock = false;
+   ifZBlock = false;
+   ifsBlock = false;
+   ifJBlock = false;
     return pieces;
   }
 
@@ -285,6 +330,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.CHARTREUSE);
     pieces[3] = vertical4;
+     ifVertical = false;
+   iflBlock = false;
+   ifoBlock = false;
+   ifTBlock = false;
+   ifZBlock = false;
+   ifsBlock = true;
+   ifJBlock = false;
     return pieces;
   }
 
@@ -329,6 +381,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.PURPLE);
     pieces[3] = vertical4;
+     ifVertical = false;
+   iflBlock = false;
+   ifoBlock = false;
+   ifTBlock = true;
+   ifZBlock = false;
+   ifsBlock = false;
+   ifJBlock = false;
     return pieces;
   }
 
@@ -373,6 +432,13 @@ public class mainCheck extends Application {
     vertical4.setStroke(Color.BLACK);
     vertical4.setFill(Color.RED);
     pieces[3] = vertical4;
+     ifVertical = false;
+   iflBlock = false;
+   ifoBlock = false;
+   ifTBlock = false;
+   ifZBlock = true;
+   ifsBlock = false;
+   ifJBlock = false;
     return pieces;
   }
 
@@ -382,18 +448,25 @@ public class mainCheck extends Application {
     int rn = rand.nextInt(7);
     if (rn == 0) {
       r = lBlock();
+      numL++;
     } else if (rn == 1) {
       r = jBlock();
+      numJ++;
     } else if (rn == 2) {
       r = oBlock();
+      numO++;
     } else if (rn == 3) {
       r = vertical();
+      numV++;
     } else if (rn == 4) {
       r = zBlock();
+      numZ++;
     } else if (rn == 5) {
       r = sBlock();
+      numS++;
     } else {
       r = tBlock();
+      numT++;
     }
     for (Rectangle rect : r) {
       rect.setStroke(Color.BLACK);
