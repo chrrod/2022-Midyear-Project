@@ -95,10 +95,38 @@ public class PiecePane extends Pane {
         // r1.setFill(Color.GREEN); // Set ball color
         //// getChildren().add(r1); // Place a ball into this pane
 
-        scoreText = new Text(520, 160, "0");
-        scoreText.setFill(Color.WHITE);
-        scoreText.setStyle("-fx-font: 15 arial;");
-        getChildren().add(scoreText);
+
+        String time = "";
+        int seconds = 0;
+        int minutes = 0;
+        int hours = 0;
+
+        Text timerText = new Text(520, 160, Integer.toString(minutes) + ":" +Integer.toString(seconds));
+        timerText.setFill(Color.WHITE);
+        timerText.setStyle("-fx-font: 15 arial;");
+        getChildren().add(timerText);
+
+        while(gameDone != true){
+            seconds ++;
+            if (seconds >= 60){
+                minutes++;
+                seconds =0;
+            }
+            if (minutes >= 60){
+                hours++;
+                minutes = 0;
+            }
+        }
+
+        if (gameDone){
+            time = "";
+            seconds = 0;
+            minutes = 0;
+            hours = 0;        }
+
+    
+
+        
 
         linesText = new Text(445, 40, "0");
         linesText.setFill(Color.WHITE);
@@ -296,7 +324,7 @@ public class PiecePane extends Pane {
 
     
     
-        // System.out.println(nexts.size());
+        System.out.println(nexts.size());
     }
 
     public void play() {
