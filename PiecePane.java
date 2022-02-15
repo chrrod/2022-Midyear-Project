@@ -550,6 +550,7 @@ public class PiecePane extends Pane {
                 r.setY(34+(r.getY()-rArray.get(rArray.size()-1)[0].getY()));//was 84
             }
         }
+        
         rArray.get(rArray.size()-1)[0].setX(getWidth()/2/*-20*/);
         rArray.get(rArray.size()-1)[0].setY(34);//was 38//was 84
     }
