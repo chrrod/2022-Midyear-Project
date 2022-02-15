@@ -730,13 +730,6 @@ public class PiecePane extends Pane {
             }
             if(count==10){
                 score+=100;
-                // scoreText.setOpacity(0);
-                // getChildren().remove(scoreText);
-                // scoreText = new Text(520, 160, Integer.toString(score));
-                // scoreText.setFill(Color.WHITE);
-                // scoreText.setStyle("-fx-font: 15 arial;");
-                // getChildren().add(scoreText);
-                // scoreText.setOpacity(1);
                 for(Rectangle[] rect: rArray){
                     for(Rectangle r: rect){
                         if(r.getY()==i){
