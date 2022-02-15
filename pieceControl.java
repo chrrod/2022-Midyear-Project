@@ -6,6 +6,11 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +24,31 @@ public class pieceControl extends Application {
     public boolean isPaused;
     private boolean down = false;
 
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception{
+        
         PiecePane piecePane = new PiecePane();
+
+        // Media test = new Media(getClass().getResource("./tetris.mp4").toExternalForm());
+
+        // MediaPlayer mediaPlayer = new MediaPlayer(test);
+        // mediaPlayer.play();
+
+        // String path = "";
+        // Media meda = new Media("tetris.mp4");
+        // File f = new File("C:/Users/Ckr/Desktop/midyearProject-Tetris/2022-Midyear-Project/tetris.mp4");
+        // Media media = new Media(f.toURI().toURL().toString());
+        // MediaPlayer mediaPlayer = new MediaPlayer(media);
+        // mediaPlayer.setAutoPlay(true); 
+        // mediaPlayer.play();
+
+        // String mFile = "tetris.mp4";
+        // Media sound = new Media(new File(mFile).toURI().toString());
+        // MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        // mediaPlayer.play();
+
+        //Media song = new Media("/2022-Midyear-Project/tetris_music.mp4"); //replace /Movies/test.mp3 with your file
+      // MediaPlayer toPlay = new MediaPlayer(song); 
+       //toPlay.play();
 
         // Boss key from Solitare
         // Load the pause game

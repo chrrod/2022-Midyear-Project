@@ -15,6 +15,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
+import java.io.File;
 
 import java.util.ArrayList;
 import javafx.scene.text.Text;
@@ -64,7 +69,9 @@ public class PiecePane extends Pane {
     public Text linesText;
     public int score = 0;
     Text scoreText;
-
+    String mFile = "tetris.mp4";
+    Media sound = new Media(new File(mFile).toURI().toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(sound);
     private ArrayList<Rectangle[]> nexts = new ArrayList<>();
     public boolean gameDone = false;
     //private Color col = new Color();
@@ -589,7 +596,8 @@ public class PiecePane extends Pane {
         // rArray.get(rArray.size()-1).setX(x);
         // rArray.get(rArray.size()-1).setY(y);
         waitTime -= 1;
-        //lineClear();        
+        //lineClear();
+        mediaPlayer.play();        
     }
 
     public void rotate(){
