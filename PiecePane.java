@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
@@ -26,13 +25,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Line;
 
-=======
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import java.io.File;
->>>>>>> bb65602748b803e13529cca54140a0bb0d0f905e
 
 import java.util.ArrayList;
 import javafx.scene.text.Text;
@@ -103,7 +100,7 @@ public class PiecePane extends Pane {
         scoreText.setStyle("-fx-font: 15 arial;");
         getChildren().add(scoreText);
 
-        linesText = new Text(445, 50, "0");
+        linesText = new Text(445, 40, "0");
         linesText.setFill(Color.WHITE);
         linesText.setStyle("-fx-font: 15 arial;");
         getChildren().add(linesText);
@@ -285,17 +282,17 @@ public class PiecePane extends Pane {
         level.setStyle("-fx-font: 30 arial;");
         getChildren().add(level);
     
-        Line line = new Line(25, 10, 60, 30);
-		Text scoretext = new Text("Score: ");
-		scoretext.setStyle("-fx-font: 20 arial;");
-		scoretext.setY(50);
-		scoretext.setX(XMAX + 5);
-		Text level = new Text("Lines: ");
-		level.setStyle("-fx-font: 20 arial;");
-		level.setY(100);
-		level.setX(XMAX + 5);
-		level.setFill(Color.GREEN);
-		group.getChildren().addAll(scoretext, line, level);
+        // Line line = new Line(25, 10, 60, 30);
+		// Text scoretext = new Text("Score: ");
+		// scoretext.setStyle("-fx-font: 20 arial;");
+		// scoretext.setY(50);
+		// scoretext.setX(XMAX + 5);
+		// Text level = new Text("Lines: ");
+		// level.setStyle("-fx-font: 20 arial;");
+		// level.setY(100);
+		// level.setX(XMAX + 5);
+		// level.setFill(Color.GREEN);
+		// group.getChildren().addAll(scoretext, line, level);
 
     
     
@@ -313,11 +310,13 @@ public class PiecePane extends Pane {
     public void pause() {
         animation.pause();
         getChildren().add(imageView);
+        mediaPlayer.pause();
     }
 
     public void gamesOver() {
         animation.pause();
         gameDone = true;
+        mediaPlayer.pause();
     }
 
     public void down() {
@@ -551,6 +550,7 @@ public class PiecePane extends Pane {
                 r.setY(34+(r.getY()-rArray.get(rArray.size()-1)[0].getY()));//was 84
             }
         }
+        
         rArray.get(rArray.size()-1)[0].setX(getWidth()/2/*-20*/);
         rArray.get(rArray.size()-1)[0].setY(34);//was 38//was 84
     }
@@ -630,7 +630,10 @@ public class PiecePane extends Pane {
                 mediaPlayer.seek(Duration.ZERO);
             }
         });
-        mediaPlayer.play();        
+        if(!gameDone){
+            mediaPlayer.play();     
+        }
+               
     }
 
     public void rotate(){
@@ -727,13 +730,6 @@ public class PiecePane extends Pane {
             }
             if(count==10){
                 score+=100;
-                // scoreText.setOpacity(0);
-                // getChildren().remove(scoreText);
-                // scoreText = new Text(520, 160, Integer.toString(score));
-                // scoreText.setFill(Color.WHITE);
-                // scoreText.setStyle("-fx-font: 15 arial;");
-                // getChildren().add(scoreText);
-                // scoreText.setOpacity(1);
                 for(Rectangle[] rect: rArray){
                     for(Rectangle r: rect){
                         if(r.getY()==i){
@@ -770,7 +766,7 @@ public class PiecePane extends Pane {
 
         linesText.setOpacity(0);
         getChildren().remove(linesText);
-        linesText = new Text(445, 50, Integer.toString(linesDone));
+        linesText = new Text(445, 40, Integer.toString(linesDone));
         linesText.setFill(Color.WHITE);
         linesText.setStyle("-fx-font: 15 arial;");
         getChildren().add(linesText);
