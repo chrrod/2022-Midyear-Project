@@ -1,34 +1,109 @@
 package application;
 
-import javafx.scene.shape.*;
+
+import javafx.scene.shape.Rectangle;
 
 public class Controls {
+	// Getting the numbers and the MESH from Tetris
+	public static final int MOVE = tetris.MOVE;
+	public static final int SIZE = tetris.SIZE;
+	public static int XMAX = tetris.XMAX;
+	public static int YMAX = tetris.YMAX;
+	public static int[][] MESH = tetris.MESH;
 
-    public static final int Move = tetris.MOVE;
-    public static final int Size = tetris.SIZE;
-    public static int XMAX = tetris.XMAX;
-    public static int YMAX = tetris.YMAX;
-    public static int [][] MESH = tetris.MESH;
+	public static void MoveRight(Form form) {
+		if (form.a.getX() + MOVE <= XMAX - SIZE && form.b.getX() + MOVE <= XMAX - SIZE
+				&& form.c.getX() + MOVE <= XMAX - SIZE && form.d.getX() + MOVE <= XMAX - SIZE) {
+			int movea = MESH[((int) form.a.getX() / SIZE) + 1][((int) form.a.getY() / SIZE)];
+			int moveb = MESH[((int) form.b.getX() / SIZE) + 1][((int) form.b.getY() / SIZE)];
+			int movec = MESH[((int) form.c.getX() / SIZE) + 1][((int) form.c.getY() / SIZE)];
+			int moved = MESH[((int) form.d.getX() / SIZE) + 1][((int) form.d.getY() / SIZE)];
+			if (movea == 0 && movea == moveb && moveb == movec && movec == moved) {
+				form.a.setX(form.a.getX() + MOVE);
+				form.b.setX(form.b.getX() + MOVE);
+				form.c.setX(form.c.getX() + MOVE);
+				form.d.setX(form.d.getX() + MOVE);
+			}
+		}
+	}
 
-    public static int XBounds; // 
+	public static void MoveLeft(Form form) {
+		if (form.a.getX() - MOVE >= 0 && form.b.getX() - MOVE >= 0 && form.c.getX() - MOVE >= 0
+				&& form.d.getX() - MOVE >= 0) {
+			int movea = MESH[((int) form.a.getX() / SIZE) - 1][((int) form.a.getY() / SIZE)];
+			int moveb = MESH[((int) form.b.getX() / SIZE) - 1][((int) form.b.getY() / SIZE)];
+			int movec = MESH[((int) form.c.getX() / SIZE) - 1][((int) form.c.getY() / SIZE)];
+			int moved = MESH[((int) form.d.getX() / SIZE) - 1][((int) form.d.getY() / SIZE)];
+			if (movea == 0 && movea == moveb && moveb == movec && movec == moved) {
+				form.a.setX(form.a.getX() - MOVE);
+				form.b.setX(form.b.getX() - MOVE);
+				form.c.setX(form.c.getX() - MOVE);
+				form.d.setX(form.d.getX() - MOVE);
+			}
+		}
+	}
 
-    public static void MoveRight(Form form){
-        XBounds = ((XMAX - Size) - Move);
-        if(form.a.getX() <= XBounds && form.b.getX() <= XBounds && 
-            form.c.getX() <= XBounds && form.d.getX() <= XBounds){
-                int movea = MESH[form.a.getX(0)][form.b.get];
-                int moveb = MESH[form.b.getX()]
-        }
-    }
-    public static void MoveLeft(Form form){
-        if(form.a.getX() - Move <= 0 && form.b.getX()- Move <= 0 && 
-            form.c.getX()- Move <= 0 && form.d.getX()- Move <= 0){
-
-                
-        }
-    }
-
-
-
-    
+	public static Form makeRect() {
+		int block = (int) (Math.random() * 100);
+		String name;
+		Rectangle a = new Rectangle(SIZE-1, SIZE-1), b = new Rectangle(SIZE-1, SIZE-1), c = new Rectangle(SIZE-1, SIZE-1),
+				d = new Rectangle(SIZE-1, SIZE-1);
+		if (block < 15) { 
+			a.setX(XMAX / 2 - SIZE);
+			b.setX(XMAX / 2 - SIZE);
+			b.setY(SIZE);
+			c.setX(XMAX / 2);
+			c.setY(SIZE);
+			d.setX(XMAX / 2 + SIZE);
+			d.setY(SIZE);
+			name = "j";
+		} else if (block < 30) { 
+			a.setX(XMAX / 2 + SIZE);
+			b.setX(XMAX / 2 - SIZE);
+			b.setY(SIZE);
+			c.setX(XMAX / 2);
+			c.setY(SIZE);
+			d.setX(XMAX / 2 + SIZE);
+			d.setY(SIZE);
+			name = "l";
+		} else if (block < 45) { 
+			a.setX(XMAX / 2 - SIZE);
+			b.setX(XMAX / 2);
+			c.setX(XMAX / 2 - SIZE);
+			c.setY(SIZE);
+			d.setX(XMAX / 2);
+			d.setY(SIZE);
+			name = "o";
+		} else if (block < 60) { 
+			a.setX(XMAX / 2 + SIZE);
+			b.setX(XMAX / 2);
+			c.setX(XMAX / 2);
+			c.setY(SIZE);
+			d.setX(XMAX / 2 - SIZE);
+			d.setY(SIZE);
+			name = "s";
+		} else if (block < 75) { 
+			a.setX(XMAX / 2 - SIZE);
+			b.setX(XMAX / 2);
+			c.setX(XMAX / 2);
+			c.setY(SIZE);
+			d.setX(XMAX / 2 + SIZE);
+			name = "t";
+		} else if (block < 90) { 
+			a.setX(XMAX / 2 + SIZE);
+			b.setX(XMAX / 2);
+			c.setX(XMAX / 2 + SIZE);
+			c.setY(SIZE);
+			d.setX(XMAX / 2 + SIZE + SIZE);
+			d.setY(SIZE);
+			name = "z";
+		} else { 
+			a.setX(XMAX / 2 - SIZE - SIZE);
+			b.setX(XMAX / 2 - SIZE);
+			c.setX(XMAX / 2);
+			d.setX(XMAX / 2 + SIZE);
+			name = "i";
+		}
+		return new Form(a, b, c, d, name);
+	}
 }

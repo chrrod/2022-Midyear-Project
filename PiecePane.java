@@ -11,15 +11,28 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
+///
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Line;
+
+=======
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import java.io.File;
+>>>>>>> bb65602748b803e13529cca54140a0bb0d0f905e
 
 import java.util.ArrayList;
 import javafx.scene.text.Text;
@@ -233,7 +246,7 @@ public class PiecePane extends Pane {
         t.setFill(Color.WHITE);
         t.setStyle("-fx-font: 35 arial;");
         getChildren().add(t);
-        Text l = new Text (300, 50, "LINES-");
+        Text l = new Text (300, 50, "LINES");
         l.setFill(Color.WHITE);
         l.setStyle("-fx-font: 40 arial;");
         getChildren().add(l);
@@ -271,6 +284,21 @@ public class PiecePane extends Pane {
         level.setFill(Color.WHITE);
         level.setStyle("-fx-font: 30 arial;");
         getChildren().add(level);
+    
+        Line line = new Line(25, 10, 60, 30);
+		Text scoretext = new Text("Score: ");
+		scoretext.setStyle("-fx-font: 20 arial;");
+		scoretext.setY(50);
+		scoretext.setX(XMAX + 5);
+		Text level = new Text("Lines: ");
+		level.setStyle("-fx-font: 20 arial;");
+		level.setY(100);
+		level.setX(XMAX + 5);
+		level.setFill(Color.GREEN);
+		group.getChildren().addAll(scoretext, line, level);
+
+    
+    
         // System.out.println(nexts.size());
     }
 
