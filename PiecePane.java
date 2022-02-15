@@ -597,6 +597,11 @@ public class PiecePane extends Pane {
         // rArray.get(rArray.size()-1).setY(y);
         waitTime -= 1;
         //lineClear();
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run(){
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
         mediaPlayer.play();        
     }
 
